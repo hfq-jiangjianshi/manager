@@ -14,28 +14,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hfq.house.manager.common.CodeType;
+import com.hfq.house.manager.entity.model.SysUser;
 import com.hfq.house.manager.mapper.CodeTypeMapper;
 
 @RestController
 public class CommonController {
-	
+
 	@Resource
 	private CodeTypeMapper codeTypeMapper;
-	
-	
+
 	@RequestMapping(path = "/IncJs.a")
-	public void CommsJsController(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		
+	public void CommsJsController(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
 		@SuppressWarnings("unchecked")
-		Map<String, Object> map = (Map<String, Object>) request.getSession().getAttribute(request.getSession().getId());
+		SysUser user = (SysUser) request.getSession().getAttribute(request.getSession().getId());
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/javascript");
 		StringBuffer wsbf = new StringBuffer();
 
-//		if (map == null || map.isEmpty()) {
-//			wsbf.append(
-//					"var auto_js_codes=function(){};var auto_js_codes_imp=new auto_js_codes();function get_js_codeText(a,b){}function has_js_codeText(a,b){}");
-//		} else {
+		if (user == null) {
+			wsbf.append(
+					"var auto_js_codes=function(){};var auto_js_codes_imp=new auto_js_codes();function get_js_codeText(a,b){}function has_js_codeText(a,b){}");
+		} else {
 			Calendar cal = Calendar.getInstance();
 			String year = String.valueOf(cal.get(Calendar.YEAR));
 			String month = String.valueOf(cal.get(Calendar.MONTH) + 1);
@@ -97,7 +97,7 @@ public class CommonController {
 			wsbf.append("	return true;\n");
 			wsbf.append("}\n");
 
-		// }
+		}
 		response.getWriter().write(wsbf.toString());
 	}
 }

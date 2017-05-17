@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +52,9 @@ public class UserServiceImpl extends BaseController implements UserService {
 		loginUser.setLoginIp(reqIp);
 		loginUser.setLastLoginTime(new Date());
 		sysUserMapper.updateSelective(loginUser);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute(session.getId(), loginUser);
 		return success("登录成功", loginUser);
 	}
 
