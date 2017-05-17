@@ -1,0 +1,211 @@
+<#include "../common/include.html"/>
+<title>编辑房源</title>
+<script type="text/javascript" src="${basePath}/stat/room/roomEdit.js"></script>
+<script type="text/javascript" src="${basePath}/IncJs.a?c=is_sale&c=orientation&c=decoration&c=room_type&c=room_status"></script>
+</head>
+<body id="layout" class="easyui-layout" style="overflow: auto">
+	<form id="editForm">
+	<fieldset form="editForm" style="border:1px solid #abcdef;">
+	<legend><strong>房源基础信息</strong></legend>
+		<div>
+			<span>销售编号:</span>
+			<span>${vo.detail.houseSellId}</span>
+			<span>创建时间:</span>
+			<span>${vo.detail.creationDate?string('yyyy-MM-dd HH:mm:ss')}</span>
+			<span>最后更新:</span>
+			<span>${vo.detail.lastChangeDate?string('yyyy-MM-dd HH:mm:ss')}</span>
+		</div>
+		<table border="0">
+			<tr>
+				<td>省:</td>
+				<td>
+				<input id="houseSellId" name=houseSellId hidden="true" value="${vo.detail.houseSellId}"/>
+				<input id="province" value="${vo.detail.province!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>市:</td>
+				<td><input id="city" value="${vo.detail.city!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>区/县:</td>
+				<td><input id="district" value="${vo.detail.district!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>商圈:</td>
+				<td><input id="bizname" value="${vo.detail.bizname!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>小区:</td>
+				<td><input id="communityName" value="${vo.detail.communityName!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+			</tr>
+			<tr>
+				<td>地址:</td>
+				<td colspan="9"><input value="${vo.detail.address!''}"  readonly="readonly" style="width: 400px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>楼号:</td>
+				<td><input id="buildingNo" value="${vo.detail.buildingNo!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>单元:</td>
+				<td><input id="unitNo" value="${vo.detail.unitNo!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>门牌:</td>
+				<td><input id="houseNo" value="${vo.detail.houseNo!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>所在楼层:</td>
+				<td><input id="flowNo" value="${vo.detail.flowNo!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+				<td>总楼层:</td>
+				<td><input id="flowTotal" value="${vo.detail.flowTotal!''}" readonly="readonly" style="width: 100px;" />
+				</td>
+			</tr>
+			<tr>
+				<td>卧室:</td>
+				<td><input value="${vo.detail.bedroomNums!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+				<td>客厅:</td>
+				<td><input value="${vo.detail.livingroomNums!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+				<td>卫生间:</td>
+				<td><input value="${vo.detail.toiletNums!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+				<td>厨房:</td>
+				<td><input value="${vo.detail.kitchenNums!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+				<td>阳台:</td>
+				<td><input value="${vo.detail.balconyNums!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>面积:</td>
+				<td><input value="${vo.detail.area!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+				<td>朝向:</td>
+				<td><input id="orientations1" value="${vo.detail.orientations?c!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+				<td>装修:</td>
+				<td><input id="decoration"  value="${vo.detail.decoration!''}" readonly="readonly" style="width: 100px;"/>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset form="editForm" style="border:1px solid #abcdef;">
+	<legend><strong>房间信息</strong></legend>
+		<div>
+			<span>房间ID:</span>
+			<span>${vo.base.id!''}</span>
+			<span>来源:</span>
+			<span>${vo.detail.source!''}</span>
+			<span>方式:</span>
+			<span>${vo.detail.entireRent!''}</span>
+			<span>公司:</span>
+			<span>${vo.detail.companyName!''}</span>
+			<span>创建时间:</span>
+			<span>${vo.base.creationDate?string('yyyy-MM-dd HH:mm:ss')}</span>
+			<span>最后更新:</span>
+			<span>${vo.base.lastChangeDate?string('yyyy-MM-dd HH:mm:ss')}</span>
+		</div>
+		<table>
+			<tr>
+				<td>面积:</td>
+				<td>
+					<input name="id" id="roomId" value="${vo.base.id!''}" hidden="true" style="width: 100px;"/>
+					<input name="area" id="area" value="${vo.base.area!''}" style="width: 100px;"/>
+				</td>
+				<td>朝向:</td>
+				<td><input name="orientations" id="orientations" value="${vo.base.orientations?c!''}" style="width: 100px;"/>
+				</td>
+				<td>房间名称:</td>
+				<td colspan="3"><input name="roomName" id="roomName" value="${vo.base.roomName!''}" style="width: 100px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>房间类型:</td>
+				<td><input name="roomType" id="roomType" value="${vo.base.roomType!''}" style="width: 100px;"/>
+				</td>
+				<td>房间状态:</td>
+				<td><input name="status" id="status" value="${vo.base.status!''}" style="width: 100px;"/>
+				</td>
+				<td>上架状态:</td>
+				<td><input name="isSale" id="isSale" value="${vo.base.isSale!''}" style="width: 100px;"/>
+				</td>
+				<td>最早入住:</td>
+				<td><input name="canCheckinDate" id="canCheckinDate" readonly="readonly" value="${vo.base.canCheckinDate?string('yyyy-MM-dd')}" style="width: 100px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>月租金(元):</td>
+				<td><input name="rentPriceMonth" type="number" value="${vo.base.rentPriceMonth?c!''}" style="width: 100px;"/>
+				</td>
+				<td>押金(元):</td>
+				<td><input name="depositFee" type="number" value="${vo.base.depositFee?c!''}" style="width: 100px;"/>
+				</td>
+				<td>押:<input name="depositMonth" type="number" value="${vo.base.depositMonth!''}" style="width: 40px;"/>
+				</td>
+				<td>
+					付:<input name="periodMonth" type="number" value="${vo.base.periodMonth!''}" style="width: 40px;"/>
+				</td>
+				<td>服务费/中介费(元):</td>
+				<td><input name="serviceFee" type="number" value="${vo.base.serviceFee?c!''}" style="width: 100px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>房间标签:</td>
+				<td colspan="7">
+				<input name="houseTag"  value="${vo.base.roomTag!''}" style="width: 400px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>房间配置:</td>
+				<td colspan="7">
+				<#list vo.settingList as setting>
+						<#if setting.checked==1> 
+						 	<input name="houseSetting" value="${setting.settingId !''}" checked="checked" type="checkbox"/>
+						<#else> 
+						  	<input name="houseSetting" value="0" type="checkbox"/>
+						</#if>
+							<span>${setting.settingDesc}</span>
+				</#list>
+				</td>
+			</tr>
+			<tr>
+				<td>房间描述:</td>
+				<td colspan="7">
+					<textarea rows="7" cols="70" name="comment">${vo.base.comment!''}</textarea>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	</form>
+	
+	<fieldset style="border:1px solid #abcdef;">
+		<legend><strong>图片信息</strong></legend>
+		<#list vo.imgsList as img>
+			<span>
+				<div>
+					<span>图片ID: ${img.id?c!''}</span>
+						<#if img.isDefault==1> 
+							<input name="firstImg" type="radio" value="${img.id?c!''}" checked="checked">
+						<#else> 
+							<input name="firstImg" type="radio" value="${img.id?c!''}">
+						</#if>
+					<span>首图</span>
+				</div>
+				<div>
+					<img alt="房源图片" width="300" height="180" src="${img.picRootPath !''}">
+				</div>
+				<div>
+					<#if img.isDelete==1> 
+						<input name="validImg" value="${img.id?c!''}" type="checkbox"><span>保留</span>
+					<#else> 
+						<input name="validImg" value="${img.id?c!''}" type="checkbox" checked="checked"><span>保留</span>
+					</#if>
+				</div>
+			</span>
+		</#list>
+	</fieldset>
+	<div style="padding: 10px 10px;">
+		<center>
+			<a id="btn" style=" width:100px; align="center";" href="javascript:opt.save();" class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a>
+		</center>
+	</div>
+</body>
+</html>

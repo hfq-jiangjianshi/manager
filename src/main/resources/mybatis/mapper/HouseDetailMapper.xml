@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfq.house.manager.mapper.HouseDetailMapper">
+
+	<!--查询字段 -->
+	<!--查询字段 -->
+	<sql id="columns">
+		a.id,
+		a.f_house_sell_id,
+		a.f_building_no,
+		a.f_unit_no,
+		a.f_flow_no,
+		a.f_flow_total,
+		a.f_house_no,
+		a.f_area,
+		a.f_orientations,
+		a.f_bedroom_nums,
+		a.f_livingroom_nums,
+		a.f_kitchen_nums,
+		a.f_toilet_nums,
+		a.f_province,
+		a.f_city,
+		a.f_house_function,
+		a.f_district,
+		a.f_bizname,
+		a.f_address,
+		a.f_subway,
+		a.f_subway_distance,
+		a.f_bus_stations,
+		a.f_surround,
+		a.f_city_id,
+		a.f_district_id,
+		a.f_biz_id,
+		a.f_subway_line_id,
+		a.f_subway_station_id,
+		a.f_community_name,
+		a.f_building_name,
+		a.f_balcony_nums,
+		a.f_baidu_lo,
+		a.f_baidu_la,
+		a.f_building_type,
+		a.f_building_year,
+		a.f_toilet,
+		a.f_balcony,
+		a.f_insurance,
+		a.f_decoration,
+		a.f_entire_rent,
+		a.f_comment,
+		a.f_house_tag,
+		a.f_source,
+		a.f_run,
+		a.f_is_delete,
+		a.f_creation_date,
+		a.f_last_change_date
+	</sql>
+
+	<sql id="b_columns">
+		b.f_is_sale,
+		b.f_status,
+		b.f_rent_price_month,
+		b.f_deposit_month,
+		b.f_period_month,
+		b.f_company_name
+	</sql>
+	
+	<sql id="b_R_columns">
+		b.f_status,
+		b.f_rent_price_month,
+		b.f_deposit_month,
+		b.f_period_month,
+		b.id as roomId
+	</sql>
+	<!--查询结果集 -->
+	<resultMap id="beanMap"
+		type="com.hfq.house.manager.entity.model.HouseDetail">
+		<result property="id" column="id" />
+		<result property="houseSellId" column="f_house_sell_id" />
+		<result property="buildingNo" column="f_building_no" />
+		<result property="unitNo" column="f_unit_no" />
+		<result property="flowNo" column="f_flow_no" />
+		<result property="flowTotal" column="f_flow_total" />
+		<result property="houseNo" column="f_house_no" />
+		<result property="area" column="f_area" />
+		<result property="orientations" column="f_orientations" />
+		<result property="bedroomNums" column="f_bedroom_nums" />
+		<result property="livingroomNums" column="f_livingroom_nums" />
+		<result property="kitchenNums" column="f_kitchen_nums" />
+		<result property="toiletNums" column="f_toilet_nums" />
+		<result property="province" column="f_province" />
+		<result property="city" column="f_city" />
+		<result property="houseFunction" column="f_house_function" />
+		<result property="district" column="f_district" />
+		<result property="bizname" column="f_bizname" />
+		<result property="address" column="f_address" />
+		<result property="subway" column="f_subway" />
+		<result property="subwayDistance" column="f_subway_distance" />
+		<result property="busStations" column="f_bus_stations" />
+		<result property="surround" column="f_surround" />
+		<result property="cityId" column="f_city_id" />
+		<result property="districtId" column="f_district_id" />
+		<result property="bizId" column="f_biz_id" />
+		<result property="subwayLineId" column="f_subway_line_id" />
+		<result property="subwayStationId" column="f_subway_station_id" />
+		<result property="communityName" column="f_community_name" />
+		<result property="buildingName" column="f_building_name" />
+		<result property="balconyNums" column="f_balcony_nums" />
+		<result property="baiduLo" column="f_baidu_lo" />
+		<result property="baiduLa" column="f_baidu_la" />
+		<result property="buildingType" column="f_building_type" />
+		<result property="buildingYear" column="f_building_year" />
+		<result property="toilet" column="f_toilet" />
+		<result property="balcony" column="f_balcony" />
+		<result property="insurance" column="f_insurance" />
+		<result property="decoration" column="f_decoration" />
+		<result property="entireRent" column="f_entire_rent" />
+		<result property="comment" column="f_comment" />
+		<result property="houseTag" column="f_house_tag" />
+		<result property="source" column="f_source" />
+		<result property="run" column="f_run" />
+		<result property="isDelete" column="f_is_delete" />
+		<result property="creationDate" column="f_creation_date" />
+		<result property="lastChangeDate" column="f_last_change_date" />
+	</resultMap>
+
+	<resultMap id="detailDtoBeanMap"
+		type="com.hfq.house.manager.entity.dto.HouseDetailDto" extends="beanMap">
+		<result property="isSale" column="f_is_sale" />
+		<result property="status" column="f_status" />
+		<result property="rentPriceMonth" column="f_rent_price_month" />
+		<result property="depositMonth" column="f_deposit_month" />
+		<result property="periodMonth" column="f_period_month" />
+		<result property="companyName" column="f_company_name" />
+	</resultMap>
+	
+	<resultMap id="roomDetailDtoBeanMap"
+		type="com.hfq.house.manager.entity.dto.RoomDetailDto" extends="beanMap">
+		<result property="status" column="f_status" />
+		<result property="rentPriceMonth" column="f_rent_price_month" />
+		<result property="depositMonth" column="f_deposit_month" />
+		<result property="periodMonth" column="f_period_month" />
+		<result property="roomId" column="roomId" />
+	</resultMap>
+
+	<!-- 分页查询房源列表 -->
+	<select id="selectHouseResourceByPage" resultMap="detailDtoBeanMap">
+		SELECT
+		<include refid="columns" />
+		,
+		<include refid="b_columns" />
+		FROM t_house_base b LEFT JOIN t_house_detail a  ON a.f_house_sell_id = b.f_house_sell_id
+		<where>
+			<if test="city != null ">
+				a.f_city=#{city}
+			</if>
+			<if test="district != null">
+				and a.f_district=#{district}
+			</if>
+			<if test="bizname != null and bizname.length()>0">
+				and a.f_bizname = #{bizname}
+			</if>
+			<if test="communityName != null">
+				and a.f_community_name = #{communityName}
+			</if>
+			<if test="bedroomNums != null">
+				and a.f_bedroom_nums = #{bedroomNums}
+			</if>
+			<if test="livingroomNums != null">
+				and a.f_livingroom_nums = #{livingroomNums}
+			</if>
+			<if test="houseSellId != null">
+				and a.f_house_sell_id = #{houseSellId}
+			</if>
+			<if test="status != null">
+				and b.f_status = #{status}
+			</if>
+			<if test="entireRent != null">
+				and a.f_entire_rent = #{entireRent}
+			</if>
+			<if test="companyName != null">
+				and a.f_source = #{companyName}
+			</if>
+			<if test="isSale != null">
+				and b.f_is_sale = #{isSale}
+			</if>
+			<if test="rentPriceMonth != null and rentPriceMonthEnd != null">
+				and b.f_rent_price_month between #{rentPriceMonth} and #{rentPriceMonthEnd}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 分页查询房间列表 -->
+	<select id="selectRoomResourceByPage" resultMap="roomDetailDtoBeanMap">
+		SELECT
+		<include refid="columns" />
+		,
+		<include refid="b_R_columns" />
+		FROM t_room_base b LEFT JOIN t_house_detail a  ON a.f_house_sell_id = b.f_house_sell_id
+		<where>
+			<if test="city != null ">
+				a.f_city=#{city}
+			</if>
+			<if test="district != null">
+				and a.f_district=#{district}
+			</if>
+			<if test="bizname != null and bizname.length()>0">
+				and a.f_bizname = #{bizname}
+			</if>
+			<if test="communityName != null">
+				and a.f_community_name = #{communityName}
+			</if>
+			<if test="bedroomNums != null">
+				and a.f_bedroom_nums = #{bedroomNums}
+			</if>
+			<if test="livingroomNums != null">
+				and a.f_livingroom_nums = #{livingroomNums}
+			</if>
+			<if test="houseSellId != null">
+				and a.f_house_sell_id = #{houseSellId}
+			</if>
+			<if test="roomId != null">
+				and b.id = #{roomId}
+			</if>
+			<if test="status != null">
+				and b.f_status = #{status}
+			</if>
+			<if test="roomType != null">
+				and b.f_room_type = #{roomType}
+			</if>
+			<if test="source != null">
+				and a.f_source = #{source}
+			</if>
+			<if test="rentPriceMonth != null and rentPriceMonthEnd != null">
+				and b.f_rent_price_month between #{rentPriceMonth} and #{rentPriceMonthEnd}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 根据houseSellID查询实体类 -->
+	<select id="selectHouseDetailBySellId" resultMap="beanMap">
+		select 
+		<include refid="columns" /> 
+		from t_house_detail a
+		where a.f_house_sell_id = #{houseSellId}
+	</select>
+
+	<!-- 选择更新 -->
+	<update id="updateSelective" parameterType="com.hfq.house.manager.entity.model.HouseDetail">
+		UPDATE t_house_detail a
+		<trim prefix="set" suffixOverrides=",">
+			<if test="vo.buildingNo != null"> a.f_building_no = #{vo.buildingNo},</if>
+			<if test="vo.unitNo != null"> a.f_unit_no = #{vo.unitNo},</if>
+			<if test="vo.flowNo != null"> a.f_flow_no = #{vo.flowNo},</if>
+			<if test="vo.flowTotal != null"> a.f_flow_total = #{vo.flowTotal},</if>
+			<if test="vo.houseNo != null"> a.f_house_no = #{vo.houseNo},</if>
+			<if test="vo.area != null"> a.f_area = #{vo.area},</if>
+			<if test="vo.orientations != null"> a.f_orientations = #{vo.orientations},</if>
+			<if test="vo.bedroomNums != null"> a.f_bedroom_nums = #{vo.bedroomNums},</if>
+			<if test="vo.livingroomNums != null"> a.f_livingroom_nums = #{vo.livingroomNums},</if>
+			<if test="vo.kitchenNums != null"> a.f_kitchen_nums = #{vo.kitchenNums},</if>
+			<if test="vo.toiletNums != null"> a.f_toilet_nums = #{vo.toiletNums},</if>
+			<if test="vo.province != null"> a.f_province = #{vo.province},</if>
+			<if test="vo.city != null"> a.f_city = #{vo.city},</if>
+			<if test="vo.houseFunction != null"> a.f_house_function = #{vo.houseFunction},</if>
+			<if test="vo.district != null"> a.f_district = #{vo.district},</if>
+			<if test="vo.bizname != null"> a.f_bizname = #{vo.bizname},</if>
+			<if test="vo.address != null"> a.f_address = #{vo.address},</if>
+			<if test="vo.subway != null"> a.f_subway = #{vo.subway},</if>
+			<if test="vo.subwayDistance != null"> a.f_subway_distance = #{vo.subwayDistance},</if>
+			<if test="vo.busStations != null"> a.f_bus_stations = #{vo.busStations},</if>
+			<if test="vo.surround != null"> a.f_surround = #{vo.surround},</if>
+			<if test="vo.cityId != null"> a.f_city_id = #{vo.cityId},</if>
+			<if test="vo.districtId != null"> a.f_district_id = #{vo.districtId},</if>
+			<if test="vo.bizId != null"> a.f_biz_id = #{vo.bizId},</if>
+			<if test="vo.subwayLineId != null"> a.f_subway_line_id = #{vo.subwayLineId},</if>
+			<if test="vo.subwayStationId != null"> a.f_subway_station_id = #{vo.subwayStationId},</if>
+			<if test="vo.communityName != null"> a.f_community_name = #{vo.communityName},</if>
+			<if test="vo.buildingName != null"> a.f_building_name = #{vo.buildingName},</if>
+			<if test="vo.balconyNums != null"> a.f_balcony_nums = #{vo.balconyNums},</if>
+			<if test="vo.baiduLo != null"> a.f_baidu_lo = #{vo.baiduLo},</if>
+			<if test="vo.baiduLa != null"> a.f_baidu_la = #{vo.baiduLa},</if>
+			<if test="vo.buildingType != null"> a.f_building_type = #{vo.buildingType},</if>
+			<if test="vo.buildingYear != null"> a.f_building_year = #{vo.buildingYear},</if>
+			<if test="vo.toilet != null"> a.f_toilet = #{vo.toilet},</if>
+			<if test="vo.balcony != null"> a.f_balcony = #{vo.balcony},</if>
+			<if test="vo.insurance != null"> a.f_insurance = #{vo.insurance},</if>
+			<if test="vo.decoration != null"> a.f_decoration = #{vo.decoration},</if>
+			<if test="vo.entireRent != null"> a.f_entire_rent = #{vo.entireRent},</if>
+			<if test="vo.comment != null"> a.f_comment = #{vo.comment},</if>
+			<if test="vo.houseTag != null"> a.f_house_tag = #{vo.houseTag},</if>
+			<if test="vo.source != null"> a.f_source = #{vo.source},</if>
+			<if test="vo.run != null"> a.f_run = #{vo.run},</if>
+			<if test="vo.isDelete != null"> a.f_is_delete = #{vo.isDelete},</if>
+			<if test="vo.lastChangeDate != null"> a.f_last_change_date = now()</if>
+		</trim>
+		WHERE a.f_house_sell_id = #{vo.houseSellId}
+	</update>
+
+</mapper>

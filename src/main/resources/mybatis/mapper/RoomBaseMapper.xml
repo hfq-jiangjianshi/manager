@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfq.house.manager.mapper.RoomBaseMapper">
+
+
+	<sql id="columns">
+		a.id,
+		a.f_house_sell_id,
+		a.f_status,
+		a.f_area,
+		a.f_room_comment,
+		a.f_room_type,
+		a.f_room_use,
+		a.f_orientations,
+		a.f_can_checkin_date,
+		a.f_rent_price_month,
+		a.f_rent_price_day,
+		a.f_service_fee,
+		a.f_deposit_fee,
+		a.f_deposit_month,
+		a.f_period_month,
+		a.f_approved_id,
+		a.f_decoration,
+		a.f_toilet,
+		a.f_balcony,
+		a.f_insurance,
+		a.f_comment,
+		a.f_room_code,
+		a.f_room_tag,
+		a.f_production_name,
+		a.f_room_name,
+		a.f_first_pub_date,
+		a.f_pub_date,
+		a.f_has_key,
+		a.f_is_delete,
+		a.f_creation_date,
+		a.f_last_change_date
+	</sql>
+	<!--查询结果集 -->
+	<resultMap id="beanMap" type="com.hfq.house.manager.entity.model.RoomBase">
+		<result property="id" column="id" />
+		<result property="houseSellId" column="f_house_sell_id" />
+		<result property="status" column="f_status" />
+		<result property="area" column="f_area" />
+		<result property="roomComment" column="f_room_comment" />
+		<result property="roomType" column="f_room_type" />
+		<result property="roomUse" column="f_room_use" />
+		<result property="orientations" column="f_orientations" />
+		<result property="canCheckinDate" column="f_can_checkin_date" />
+		<result property="rentPriceMonth" column="f_rent_price_month" />
+		<result property="rentPriceDay" column="f_rent_price_day" />
+		<result property="serviceFee" column="f_service_fee" />
+		<result property="depositFee" column="f_deposit_fee" />
+		<result property="depositMonth" column="f_deposit_month" />
+		<result property="periodMonth" column="f_period_month" />
+		<result property="approvedId" column="f_approved_id" />
+		<result property="decoration" column="f_decoration" />
+		<result property="toilet" column="f_toilet" />
+		<result property="balcony" column="f_balcony" />
+		<result property="insurance" column="f_insurance" />
+		<result property="comment" column="f_comment" />
+		<result property="roomCode" column="f_room_code" />
+		<result property="roomTag" column="f_room_tag" />
+		<result property="productionName" column="f_production_name" />
+		<result property="roomName" column="f_room_name" />
+		<result property="firstPubDate" column="f_first_pub_date" />
+		<result property="pubDate" column="f_pub_date" />
+		<result property="hasKey" column="f_has_key" />
+		<result property="isDelete" column="f_is_delete" />
+		<result property="creationDate" column="f_creation_date" />
+		<result property="lastChangeDate" column="f_last_change_date" />
+	</resultMap>
+
+	<!-- 分页查询房源列表 -->
+	<select id="selectRoomBaseByRoomId" resultMap="beanMap">
+		select
+		<include refid="columns" />
+		from t_room_base a
+		where a.id = #{id}
+	</select>
+
+	<!-- 选择更新 -->
+	<update id="updateSelective" parameterType="com.hfq.house.manager.entity.model.RoomBase">
+		UPDATE t_room_base a
+		<trim prefix="set" suffixOverrides=",">
+			<if test="vo.status != null"> a.f_status = #{vo.status},</if>
+			<if test="vo.area != null"> a.f_area = #{vo.area},</if>
+			<if test="vo.roomComment != null"> a.f_room_comment = #{vo.roomComment},</if>
+			<if test="vo.roomType != null"> a.f_room_type = #{vo.roomType},</if>
+			<if test="vo.roomUse != null"> a.f_room_use = #{vo.roomUse},</if>
+			<if test="vo.orientations != null"> a.f_orientations = #{vo.orientations},</if>
+			<if test="vo.canCheckinDate != null"> a.f_can_checkin_date = #{vo.canCheckinDate},</if>
+			<if test="vo.rentPriceMonth != null"> a.f_rent_price_month = #{vo.rentPriceMonth},</if>
+			<if test="vo.rentPriceDay != null"> a.f_rent_price_day = #{vo.rentPriceDay},</if>
+			<if test="vo.serviceFee != null"> a.f_service_fee = #{vo.serviceFee},</if>
+			<if test="vo.depositFee != null"> a.f_deposit_fee = #{vo.depositFee},</if>
+			<if test="vo.depositMonth != null"> a.f_deposit_month = #{vo.depositMonth},</if>
+			<if test="vo.periodMonth != null"> a.f_period_month = #{vo.periodMonth},</if>
+			<if test="vo.approvedId != null"> a.f_approved_id = #{vo.approvedId},</if>
+			<if test="vo.decoration != null"> a.f_decoration = #{vo.decoration},</if>
+			<if test="vo.toilet != null"> a.f_toilet = #{vo.toilet},</if>
+			<if test="vo.balcony != null"> a.f_balcony = #{vo.balcony},</if>
+			<if test="vo.insurance != null"> a.f_insurance = #{vo.insurance},</if>
+			<if test="vo.comment != null"> a.f_comment = #{vo.comment},</if>
+			<if test="vo.roomCode != null"> a.f_room_code = #{vo.roomCode},</if>
+			<if test="vo.roomTag != null"> a.f_room_tag = #{vo.roomTag},</if>
+			<if test="vo.productionName != null"> a.f_production_name = #{vo.productionName},</if>
+			<if test="vo.roomName != null"> a.f_room_name = #{vo.roomName},</if>
+			<if test="vo.firstPubDate != null"> a.f_first_pub_date = #{vo.firstPubDate},</if>
+			<if test="vo.pubDate != null"> a.f_pub_date = #{vo.pubDate},</if>
+			<if test="vo.hasKey != null"> a.f_has_key = #{vo.hasKey},</if>
+			<if test="vo.isDelete != null"> a.f_is_delete = #{vo.isDelete},</if>
+		</trim>
+		WHERE a.id = #{vo.id}
+	</update>
+	
+</mapper>

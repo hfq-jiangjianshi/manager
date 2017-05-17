@@ -1,0 +1,192 @@
+<#include "../common/include.html"/>
+<title>编辑房源</title>
+<script type="text/javascript" src="${basePath}/stat/house/HouseEdit.js"></script>
+<script type="text/javascript" src="${basePath}/IncJs.a?c=is_sale&c=house_status&c=rent_type&c=orientation&c=decoration"></script>
+</head>
+<body id="layout" class="easyui-layout" style="overflow: auto">
+	<form id="editForm">
+	<fieldset form="editForm" style="border:1px solid #abcdef;">
+	<legend><strong>房源基础信息</strong></legend>
+		<div>
+			<span>销售编号:</span>
+			<span>${vo.detail.houseSellId}</span>
+			<span>创建时间:</span>
+			<span>${vo.detail.creationDate?string('yyyy-MM-dd HH:mm:ss')}</span>
+			<span>最后更新:</span>
+			<span>${vo.detail.lastChangeDate?string('yyyy-MM-dd HH:mm:ss')}</span>
+		</div>
+		<table border="0">
+			<tr>
+				<td>省:</td>
+				<td>
+				<input id="houseSellId" name=houseSellId hidden="true" value="${vo.detail.houseSellId}"/>
+				<input name="province" id="province" value="${vo.detail.province!''}" style="width: 100px;" />
+				</td>
+				<td>市:</td>
+				<td><input name=city id="city" value="${vo.detail.city!''}" style="width: 100px;" />
+				</td>
+				<td>区/县:</td>
+				<td><input name="district" id="district" value="${vo.detail.district!''}" style="width: 100px;" />
+				</td>
+				<td>商圈:</td>
+				<td><input name="bizname" id="bizname" value="${vo.detail.bizname!''}" style="width: 100px;" />
+				</td>
+				<td>小区:</td>
+				<td><input name="communityName" id="communityName" value="${vo.detail.communityName!''}"  style="width: 100px;" />
+				</td>
+			</tr>
+			<tr>
+				<td>地址:</td>
+				<td colspan="9"><input name="address" value="${vo.detail.address!''}"  style="width: 400px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>楼号:</td>
+				<td><input name="buildingNo" id="buildingNo" value="${vo.detail.buildingNo!''}" style="width: 100px;" />
+				</td>
+				<td>单元:</td>
+				<td><input name="unitNo" id="unitNo" value="${vo.detail.unitNo!''}" style="width: 100px;" />
+				</td>
+				<td>门牌:</td>
+				<td><input name="houseNo" id="houseNo" value="${vo.detail.houseNo!''}" style="width: 100px;" />
+				</td>
+				<td>所在楼层:</td>
+				<td><input name="flowNo" id="flowNo" value="${vo.detail.flowNo!''}" style="width: 100px;" />
+				</td>
+				<td>总楼层:</td>
+				<td><input name="flowTotal" id="flowTotal" value="${vo.detail.flowTotal!''}" style="width: 100px;" />
+				</td>
+			</tr>
+			<tr>
+				<td>卧室:</td>
+				<td><input name="bedroomNums" type="number" value="${vo.detail.bedroomNums!''}" style="width: 100px;"/>
+				</td>
+				<td>客厅:</td>
+				<td><input name="livingroomNums" type="number" value="${vo.detail.livingroomNums!''}" style="width: 100px;"/>
+				</td>
+				<td>卫生间:</td>
+				<td><input name="toiletNums" type="number" value="${vo.detail.toiletNums!''}" style="width: 100px;"/>
+				</td>
+				<td>厨房:</td>
+				<td><input name="kitchenNums" type="number" value="${vo.detail.kitchenNums!''}" style="width: 100px;"/>
+				</td>
+				<td>阳台:</td>
+				<td><input name="balconyNums" type="number" value="${vo.detail.balconyNums!''}" style="width: 100px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>面积:</td>
+				<td><input name="area" type="number" value="${vo.detail.area!''}" style="width: 100px;"/>
+				</td>
+				<td>朝向:</td>
+				<td><input name="orientations" id="orientations" value="${vo.detail.orientations?c!''}" style="width: 100px;"/>
+				</td>
+				<td>装修:</td>
+				<td><input name="decoration" id="decoration"  value="${vo.detail.decoration!''}" style="width: 100px;"/>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset form="editForm" style="border:1px solid #abcdef;">
+	<legend><strong>房源出租信息</strong></legend>
+		<div>
+			<span>来源:</span>
+			<span>${vo.detail.source!''}</span>
+			<span>方式:</span>
+			<span>${vo.detail.entireRent!''}</span>
+			<span>公司:</span>
+			<span>${vo.base.companyName!''}</span>
+		</div>
+		<table>
+			<tr>
+				<td>出租类型:</td>
+				<td><input name="entireRent" id="entireRent" value="${vo.detail.entireRent!''}" style="width: 100px;"/>
+				</td>
+				<td>房源状态:</td>
+				<td><input name="status" id="status" value="${vo.base.status!''}" style="width: 100px;"/>
+				</td>
+				<td>上架状态:</td>
+				<td><input name="isSale" id="isSale" value="${vo.base.isSale!''}" style="width: 100px;"/>
+				</td>
+				<td>最早入住:</td>
+				<td><input name="canCheckinDate" id="canCheckinDate" readonly value="${vo.base.canCheckinDate?string('yyyy-MM-dd')}" style="width: 100px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>月租金(元):</td>
+				<td><input name="rentPriceMonth" type="number" value="${vo.base.rentPriceMonth?c!''}" style="width: 100px;"/>
+				</td>
+				<td>押金(元):</td>
+				<td><input name="depositFee" type="number" value="${vo.base.depositFee?c!''}" style="width: 100px;"/>
+				</td>
+				<td>押:<input name="depositMonth" type="number" value="${vo.base.depositMonth!''}" style="width: 40px;"/>
+				</td>
+				<td>
+					付:<input name="periodMonth" type="number" value="${vo.base.periodMonth!''}" style="width: 40px;"/>
+				</td>
+				<td>服务费/中介费(元):</td>
+				<td><input name="serviceFee" type="number" value="${vo.base.serviceFee?c!''}" style="width: 100px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>房源标签:</td>
+				<td colspan="7">
+				<input name="houseTag"  value="${vo.detail.houseTag!''}" style="width: 400px;"/>
+				</td>
+			</tr>
+			<tr>
+				<td>房源配置:</td>
+				<td colspan="7">
+				<#list vo.settingList as setting>
+						<#if setting.checked==1> 
+						 	<input name="houseSetting" value="${setting.settingId !''}" checked="checked" type="checkbox"/>
+						<#else> 
+						  	<input name="houseSetting" value="0" type="checkbox"/>
+						</#if>
+							<span>${setting.settingDesc}</span>
+				</#list>
+				</td>
+			</tr>
+			<tr>
+				<td>房源描述:</td>
+				<td colspan="7">
+					<textarea rows="7" cols="70" name="comment">${vo.detail.comment!''}</textarea>
+				</td>
+			</tr>
+		</table>
+	</fieldset>
+	</form>
+	
+	<fieldset style="border:1px solid #abcdef;">
+		<legend><strong>图片信息</strong></legend>
+		<#list vo.imgsList as img>
+			<span>
+				<div>
+					<span>图片ID: ${img.id?c!''}</span>
+						<#if img.isDefault==1> 
+							<input name="firstImg" type="radio" value="${img.id?c!''}" checked="checked">
+						<#else> 
+							<input name="firstImg" type="radio" value="${img.id?c!''}">
+						</#if>
+					<span>首图</span>
+				</div>
+				<div>
+					<img alt="房源图片" width="300" height="180" src="${img.picRootPath !''}">
+				</div>
+				<div>
+					<#if img.isDelete==1> 
+						<input name="validImg" value="${img.id?c!''}" type="checkbox"><span>保留</span>
+					<#else> 
+						<input name="validImg" value="${img.id?c!''}" type="checkbox" checked="checked"><span>保留</span>
+					</#if>
+				</div>
+			</span>
+		</#list>
+	</fieldset>
+	<div style="padding: 10px 10px;">
+		<center>
+			<a id="btn" style=" width:100px; align="center";" href="javascript:opt.save();" class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a>
+		</center>
+	</div>
+</body>
+</html>

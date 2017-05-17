@@ -1,0 +1,76 @@
+<#include "common/include.html"/>
+<title>房源管理系统</title>
+<!-- Bootstrap core CSS -->
+<link href="${basePath}/statics/css/login.css" rel="stylesheet">
+<script type="text/javascript" src="${basePath}/stat/login.js"></script>
+</head>
+<body id="layout" class="easyui-layout">
+	<!-- 导航条 -->
+	<div region="north" border="false" split="flase">
+		<div id="header" style="background-image: url(${basePath}/statics/img/head_bg.jpg);height:230px;">
+			<div style="background-image: url(${basePath}/statics/img/login_head.png);height:230px; 
+							background-repeat: no-repeat; background-position: right;">
+				<img style="margin-top: 40px;" src="${basePath}/statics/img/header-logo.png">
+			</div>
+		</div>
+	</div>
+	<!-- 页面主体 -->
+	<div id="center" align="center" region="center" border="false"
+		style="left: 0px; top: 0px; padding: 0px; margin: 0px;background-color: #e8e7e7;">
+		<div style="height:6px;background-color: #f3f3f3;">&nbsp;</div>
+		<div style="background-image: url(${basePath}/statics/img/login_border.jpg); width: 371px; height: 218px; 
+					 valign: middle;">
+			<form class="form-signin" id="loginForm" role="form" method="post" action="${basePath}/sysbase/checkLogin.c">
+			<table width="250px" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+				<tr align="center">
+					<td id="msg" colspan="2" height="50">
+					<#if isSuccess?? && !isSuccess>
+						<font color=red>${msg}</font>
+					</#if>
+					&nbsp;
+					</td>
+				</tr>
+				<tr align="center">
+					<td height="35">
+						用户名：
+					</td>
+					<td height="35">
+						<input type="text" style="width: 150px;" name="username" id="username"
+						class="easyui-validatebox" data-options="required:true"
+							value="admin" placeholder="帐户" >
+					</td>
+				</tr>
+				<tr>
+					<td height="37" align="center">
+						密&nbsp;&nbsp;码：
+					</td>
+					<td height="37" align="center">
+						<input style="width: 150px;"
+							type="password" name="password" id="password" 
+							class="easyui-validatebox" data-options="required:true"
+							value="admin" placeholder="密码">
+					</td>
+				</tr>
+				<tr align="center">
+					<td id="msg" colspan="2" height="10">&nbsp;</td>
+				</tr>
+				<tr align="center">
+					<td colspan="2">
+						<button style="width: 100px;" type="button"
+						onclick="login();">登录</button>
+					</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+	</div>
+
+	<!-- 页面底部 -->
+	<div region="south" border="false" split="false"
+		style="background: #eee; line-height: 12px; height: 20px; text-align: right; font-size: 11px; padding: 0px;">
+		<div style="height:6px;background-color: #f3f3f3;">&nbsp;</div>
+		<div align="center" style="font-size: 12px;">copyright 2017@会分期&nbsp;</div>
+		
+	</div>
+</body>
+</html>
