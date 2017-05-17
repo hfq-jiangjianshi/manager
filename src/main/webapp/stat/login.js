@@ -1,24 +1,27 @@
-function login() {
-	if ($('#loginForm').form('validate')) {
-//		var url = basePath + "/sysbase/checkLogin.c";
-//		$('#loginForm').form('submit', {
-//			url : url,
-//			success : function(result) {
-//				var result = eval('(' + result + ')');
-//				if (result.isSuccess) {
-//					$('#msg').html(result.msg);
-//					window.location.href = basePath + "/sysbase/index.c";
-//				} else {
-//					$('#msg').html(result.msg);
-//				}
-//			}
-//		});
-		$('#loginForm').submit();
+var opt = {
+	login : function() {
+		var account = $("#account").val();
+		var password = $("#password").val();
+
+		$.ajax({
+			url : '/login',
+			type : 'POST',
+			data : {
+				'account' : account,
+				'password' : password
+			},
+			dataType : 'json',
+			success : function(result) {
+				
+				if (result.status == 1) {
+					$("#msg_top").text(result.msg).css("color", "red");
+				} else {
+					window.top.location.href = "/main";
+				}
+			},
+			error : function() {
+				alert("系统异常，请联系管理员")
+			}
+		})
 	}
 }
-$(document).ready(function(){
-	if(window.top!=window){
-		window.top.location.href=window.location.href;
-	}
-});
-

@@ -12,7 +12,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author jian.wu 2016年9月22日 下午7:21:11
+ * 
+ * @author jjs
+ *
  */
 public class EncryptUtil {
 

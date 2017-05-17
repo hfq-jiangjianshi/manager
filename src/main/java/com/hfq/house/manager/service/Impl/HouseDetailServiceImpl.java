@@ -37,15 +37,15 @@ import com.hfq.house.manager.service.HouseDetailService;
 public class HouseDetailServiceImpl implements HouseDetailService {
 
 	@Resource
-	HouseDetailMapper houseDetailMapper;
+	private HouseDetailMapper houseDetailMapper;
 	@Resource
-	HouseBaseMapper houseBaseMapper;
+	private HouseBaseMapper houseBaseMapper;
 	@Resource
-	HousePicsMapper housePicsMapper;
+	private HousePicsMapper housePicsMapper;
 	@Resource
-	HouseSettingMapper houseSettingMapper;
+	private HouseSettingMapper houseSettingMapper;
 	@Resource
-	RoomBaseMapper roomBaseMapper;
+	private RoomBaseMapper roomBaseMapper;
 
 	private static final Integer HUNDRED = 100;
 

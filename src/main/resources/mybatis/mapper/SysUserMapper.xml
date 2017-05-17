@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfq.house.manager.mapper.SysUserMapper">
+
+
+	<sql id="columns">
+		a.id,
+		a.f_account,
+		a.f_password,
+		a.f_real_name,
+		a.f_salt,
+		a.f_token,
+		a.f_status,
+		a.f_login_ip,
+		a.f_last_login_time,
+		a.f_create_time,
+		a.f_update_time
+	</sql>
+	<!--查询结果集 -->
+	<resultMap id="beanMap" type="com.hfq.house.manager.entity.model.SysUser">
+		<result property="id" column="id" />
+		<result property="account" column="f_account" />
+		<result property="password" column="f_password" />
+		<result property="realName" column="f_real_name" />
+		<result property="salt" column="f_salt" />
+		<result property="token" column="f_token" />
+		<result property="status" column="f_status" />
+		<result property="loginIp" column="f_login_ip" />
+		<result property="lastLoginTime" column="f_last_login_time" />
+		<result property="createTime" column="f_create_time" />
+		<result property="updateTime" column="f_update_time" />
+	</resultMap>
+
+	<select id="selectByAccount" resultMap="beanMap">
+		select
+		<include refid="columns" />
+		from t_sys_user a
+		where a.f_account = #{account}
+	</select>
+	
+	<select id="selectByPrimaryKey" resultMap="beanMap">
+		select
+		<include refid="columns" />
+		from t_sys_user a
+		where a.id = #{id}
+	</select>
+
+	<!-- 选择更新 -->
+	<update id="updateSelective" parameterType="com.hfq.house.manager.entity.model.SysUser">
+		UPDATE t_sys_user a
+		<trim prefix="set" suffixOverrides=",">
+			<if test="vo.account != null"> a.f_account = #{vo.account},</if>
+			<if test="vo.password != null"> a.f_password = #{vo.password},</if>
+			<if test="vo.realName != null"> a.f_real_name = #{vo.realName},</if>
+			<if test="vo.salt != null"> a.f_salt = #{vo.salt},</if>
+			<if test="vo.token != null"> a.f_token = #{vo.token},</if>
+			<if test="vo.status != null"> a.f_status = #{vo.status},</if>
+			<if test="vo.loginIp != null"> a.f_login_ip = #{vo.loginIp},</if>
+			<if test="vo.createTime != null"> a.f_create_time = #{vo.createTime},</if>
+		</trim>
+		WHERE a.id = #{vo.id}
+	</update>
+</mapper>
