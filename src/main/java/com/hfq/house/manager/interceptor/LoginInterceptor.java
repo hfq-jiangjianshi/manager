@@ -51,6 +51,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 				return true;
 			} else {
 				res.setCharacterEncoding("UTF-8");
+				res.setContentType("text/html; charset=utf-8");
 				PrintWriter writer = res.getWriter();
 				writer.write("登录token已过期，请重新登录");
 				return false;
