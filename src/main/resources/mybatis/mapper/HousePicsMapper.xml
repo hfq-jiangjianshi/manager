@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfq.house.manager.mapper.HousePicsMapper">
+
+
+	<sql id="columns">
+		a.id,
+		a.f_house_sell_id,
+		a.f_room_id,
+		a.f_pic_root_path,
+		a.f_pic_web_path,
+		a.f_pic_type,
+		a.f_is_default,
+		a.f_is_delete,
+		a.f_creation_date,
+		a.f_last_change_date
+	</sql>
+	<!--查询结果集 -->
+	<resultMap id="beanMap" type="com.hfq.house.manager.entity.model.HousePics">
+		<result property="id" column="id" />
+		<result property="houseSellId" column="f_house_sell_id" />
+		<result property="roomId" column="f_room_id" />
+		<result property="picRootPath" column="f_pic_root_path" />
+		<result property="picWebPath" column="f_pic_web_path" />
+		<result property="picType" column="f_pic_type" />
+		<result property="isDefault" column="f_is_default" />
+		<result property="isDelete" column="f_is_delete" />
+		<result property="creationDate" column="f_creation_date" />
+		<result property="lastChangeDate" column="f_last_change_date" />
+	</resultMap>
+
+	<select id="selectImgCountBySellId" resultType="int">
+		select count(1)
+		from t_house_pics a 
+		where a.f_house_sell_id = #{houseSellId} and a.f_is_delete = 0
+	</select>
+	
+	<select id="selectHousePicsBySellId" resultMap="beanMap">
+		select 
+		<include refid="columns" /> 
+		from t_house_pics a
+		where a.f_house_sell_id = #{houseSellId}
+	</select>
+	
+	<select id="selectRoomPicsByRoomId" resultMap="beanMap">
+		select 
+		<include refid="columns" /> 
+		from t_house_pics a
+		where a.f_room_id = #{roomId}
+	</select>
+	
+	
+	<!-- 选择性更新  -->
+	<update id="updateImgStatusSelective" parameterType="com.hfq.house.manager.entity.vo.HousePicEditVo">
+		UPDATE t_house_pics a
+		<trim prefix="set" suffixOverrides=",">
+			<if test="vo.isDefault != null"> a.f_is_default = #{vo.isDefault},</if>
+			<if test="vo.isDelete != null"> a.f_is_delete = #{vo.isDelete},</if>
+		</trim>
+		<where>
+			<if test="vo.imgId != null ">
+				a.id=#{vo.imgId}
+			</if>
+			<if test="vo.roomId != null">
+				and a.f_room_id=#{vo.roomId}
+			</if>
+			<if test="vo.houseSellId != null">
+				and a.f_house_sell_id=#{vo.houseSellId}
+			</if>
+		</where>
+	</update>
+</mapper>

@@ -1,0 +1,109 @@
+body {
+	font-family: "宋体", Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 24px;
+	color: #666;
+	background-color: #fff;
+}
+
+.clear{clear:both;}
+.lf {
+    float: left;
+}
+.shadow {
+	background-color: #DDDDDD;
+}
+
+.msgbox1 {
+	border: 1px solid #ffdd99;
+	background: #ffffcc;
+	font-size: 12px;
+	LINE-HEIGHT: 1.5em;
+	COLOR: #444;
+	padding: 4px;
+	position: relative;
+	top: -3px;
+	left: -3px;
+}
+
+
+
+/* tableStyle */
+
+.formTable {
+	border-left: solid 0px;
+	border-top: solid 0px;
+	border-right: solid 1px #ddd;
+	border-bottom: solid 1px #ddd;
+}
+.formTable td {
+	border-top: solid 1px #ddd;
+	border-left: solid 1px #ddd;
+	border-right: solid 0px;
+	border-bottom: solid 0px;
+	padding: 5px;
+}
+.formTable td.label {
+	border-top: solid 1px #ddd;
+	border-left: solid 1px #ddd;
+	border-right: solid 0px;
+	border-bottom: solid 0px;
+	padding: 5px;
+	background-color: #E6EFFE;
+}
+.formTable th{
+	border-top: solid 1px #ddd;
+	border-left: solid 1px #ddd;
+	border-right: solid 0px;
+	border-bottom: solid 0px;
+	padding: 5px;
+	text-align: center;
+	background-color: #CCC;
+	font-size: 14px;
+}
+/* tableStyle */
+
+/**进度条**/
+p.bid_Bar {
+    background: none repeat scroll 0 0 #f0f0f0;
+    border-radius: 2px;
+    height: 22px;
+    margin-top: 5px;
+    position: relative;
+    width: 90px;
+}
+
+p.bid_Bar span {
+    color: #333;
+    display: block;
+    font-size: 14px;
+    height: 22px;
+    left: 0;
+    line-height: 22px;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 90px;
+    z-index: 2;
+}
+p.bid_Bar b.Bar_1 {
+    background: none repeat scroll 0 0 #66b4e6;
+    border-radius: 2px;
+    display: block;
+    height: 22px;
+    left: 0;
+    line-height: 22px;
+    position: absolute;
+    top: 0;
+    width: 90px;
+}
+/**进度条**/
+
+
+
+/**输入框**/
+input.class1 {
+	border: solid 1px #95B8E7;
+}
+/**输入框**/

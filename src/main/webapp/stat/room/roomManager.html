@@ -1,0 +1,71 @@
+<#include "../common/include.html"/>
+<title>房间管理</title>
+<script type="text/javascript" src="${basePath}/stat/room/roomManager.js"></script>
+<script type="text/javascript" src="${basePath}/IncJs.a?c=is_sale&c=orientation&c=decoration&c=room_type&c=room_status"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div id="toolbar" style="display: none;">
+		<form id="searchForm">
+			<table border="0">
+				<tr>
+					<td>城市:</td>
+					<td><input name=city id="city" style="width: 100px;" />
+					</td>
+					<td>行政区:</td>
+					<td><input name="district" id="district" style="width: 100px;" />
+					</td>
+					<td>商圈:</td>
+					<td><input name="bizname" id="bizname" style="width: 100px;" />
+					</td>
+					<td>小区:</td>
+					<td><input name="communityName" id="communityName" style="width: 100px;" />
+					</td>
+					<td>居室:</td>
+					<td><input name="bedroomNums" id="bedroomNums" type="number" style="width: 100px;" />
+					</td>
+					<td>客厅:</td>
+					<td><input name="livingroomNums" id="livingroomNums" type="number" style="width: 100px;" />
+					</td>
+				</tr>
+				<tr>
+					<td>房源ID:</td>
+					<td><input name="houseSellId" id="houseSellId" style="width: 100px;" />
+					</td>
+					<td>房间ID:</td>
+					<td><input name="roomId" id="roomId" style="width: 100px;" />
+					</td>
+					<td>房间状态:</td>
+					<td><input name="status" id="status" style="width: 100px;" />
+					</td>
+					<td>房间类型:</td>
+					<td><input name="roomType" id="roomType" style="width: 100px;" />
+					</td>
+					<td>所属公司:</td>
+					<td><input name="source" id="source"  style="width: 100px;" />
+					</td>
+					<td>是否下架:</td>
+					<td><input name="isSale" id="isSale" style="width: 100px;" />
+					</td>
+				</tr>
+				<tr>
+					<td>月租:</td>
+					<td><input name="rentPriceMonth" id="rentPriceMonth_b" type="number" style="width: 100px;" />
+					</td>
+					<td>至:</td>
+					<td><input name="rentPriceMonthEnd" id="rentPriceMonth_e" type="number" style="width: 100px;" />
+					</td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:opt.search();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search'">查询</a></td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:opt.resetSearch();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-redo'">重置</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'center',fit:true,border:false">
+		<table id="dataGrid" data-options="fit:true, border:false"></table>
+	</div>
+</body>
+</html>

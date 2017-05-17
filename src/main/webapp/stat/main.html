@@ -1,0 +1,110 @@
+<#include "common/include.html"/>
+<title>房源管理系统</title>
+<link rel="stylesheet" href="${basePath}/statics/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="${basePath}/statics/zTree/js/jquery.ztree.core-3.2.js"></script>
+<script type="text/javascript" src="${basePath}/statics/js/alltab.js"></script>
+<script type="text/javascript" src="${basePath}/stat/main.js"></script>
+<style>
+ul.top_nav {
+	padding: 0;
+	margin: 0;
+	z-index: 5;
+}
+ul.top_nav li {
+	text-align: center;
+	margin: 10px;
+	display: block;
+	float: left;
+	width: 60px;
+	height: 62px;
+}
+ul.top_nav li:hover,li.top_nav_hover{
+	background-image: url('${basePath}/statics/img/top_nav_button_hover.png');
+}
+ul.top_nav a{
+	text-decoration: none;
+}
+
+ul.top_nav li img {
+	padding: 2px;
+	width: 30px;
+	height: 30px;
+	margin-top: 4px;
+}
+ul.top_nav li span {
+	display:block;
+	text-align: center; 
+	margin-top: 0px;
+	font-size:12px;
+	color:#15428B;
+}
+#header {
+	height: 75px; border: #CCCCCC solid 1px;
+	background-image:  url('${basePath}/statics/img/head_bg.jpg');
+}
+</style>
+</head>
+<body id="layout" class="easyui-layout">
+	<!-- 导航条 -->
+	<!-- <div region="north" border="false" split="flase">
+		<div id="header">
+			<div style="overflow: hidden; height: 75px; float: left;">
+				<ul class="top_nav" style="float: right;">
+					<li><a href="javascript:void(0);" id="cpwd"
+						onclick="$('#globalnav1 li a').removeAttr('class');$('#cpwd').attr('class','cgColor');$('#mpwd').dialog('open');">
+							<span>修改密码</span> <img title="修改密码" alt="修改密码"
+							src="${basePath}/statics/img/change_password.png" />
+					</a></li>
+					<li><a href="javascript:void(0);" onclick="logout();"> <span>安全退出</span>
+							<img title="安全退出" alt="安全退出" src="${basePath}/statics/img/logOut.png" />
+					</a></li>
+				</ul>
+				<img src="${basePath}/statics/img/login_title.png">
+			</div>
+			<div style="overflow: hidden; width: 240px; height: 80px; float: right;">
+				<div style="float: right;">
+					欢迎 <label id="com_label">未知</label> 用户：[<label id="user_label">未登陆</label>]
+				</div>
+				<div style="height: 36px; float: right;">
+						onclick="lookMsg();"
+					<img style="padding: 3px 1px 0px 8px;" id="cometImg" title=""
+						alt="消息提示" width="25px" height="25px" class="cometImg"
+						src="${basePath}/statics/img/msg.png"> <span id="cometMsg">&nbsp;</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 左侧菜单栏 -->
+	<div class="leftMenu" id="layoutWest" region="west" split="true"  style="width:180px;"
+		title="导航菜单">
+		<!-- <ul id="mainMenu" class="ztree">菜单加载中...</ul> -->
+		
+		<div class="easyui-accordion" style="width: 180px; height: auto;">
+			<div title="功能菜单" data-options="iconCls:'icon-search'" style="padding: 10px;">
+				<ul id="treeMenu" class="easyui-tree">
+					<li><span>房源</span>
+						<ul>
+							<li>房源管理</li>
+							<li>房间管理</li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 页面主体 -->
+	<div id="center" region="center"
+		style="left: 0px; top: 0px; padding: 0px; margin: 0px; background: #eee;">
+		 <div id="tabs" class="easyui-tabs" fit="true" border="false"></div>
+	</div>
+
+	<!-- 页面底部 -->
+	<div region="south" border="false" split="false"
+		style="background: #eee; line-height: 12px; height: 20px; text-align: right; font-size: 11px; padding: 0px;">
+		<div style="height:6px;background-color: #f3f3f3;">&nbsp;</div>
+		<div align="center" style="font-size: 12px;">copyright 2017@会分期&nbsp;</div>
+		
+	</div>
+</body>
+</html>

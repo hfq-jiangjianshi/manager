@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOG_FILE"
+		value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}" />
+	<include
+		resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+	<!--<include resource="org/springframework/boot/logging/logback/base.xml"/> -->
+	<logger name="org.springframework.web" level="INFO" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoder 默认配置为PatternLayoutEncoder -->
+		<encoder>
+			<pattern>%d{HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>./logs/statistic.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志输出位置 可相对、和绝对路径 -->
+			<fileNamePattern>./logs/house_manager.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<!-- 可选节点，控制保留的归档文件的最大数量，超出数量就删除旧文件 -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<!-- 查看当前活动文件的大小，如果超过指定大小会告知RollingFileAppender 触发当前活动文件滚动 -->
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>40MB</maxFileSize>
+		</triggeringPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger -
+				%msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- mybatis 打印SQL -->
+	<logger name="com.hfq.house.manager.mapper" level="debug" />
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR" />
+	</root>
+	<!--<logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG"> -->
+	<!--<logger name="com.naxia.statistic.dao.mapper" level="DEBUG"></logger> -->
+</configuration>

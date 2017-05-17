@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfq.house.manager.mapper.HouseBaseMapper">
+
+
+	<sql id="columns">
+		a.id,
+		a.f_house_sell_id,
+		a.f_is_sale,
+		a.f_status,
+		a.f_ext400,
+		a.f_house_comment,
+		a.f_can_checkin_date,
+		a.f_rent_price_month,
+		a.f_rent_price_day,
+		a.f_service_fee,
+		a.f_deposit_fee,
+		a.f_deposit_month,
+		a.f_period_month,
+		a.f_company_id,
+		a.f_company_name,
+		a.f_agency_id,
+		a.f_agency_phone,
+		a.f_agency_name,
+		a.f_agency_introduce,
+		a.f_agency_gender,
+		a.f_agency_avatar,
+		a.f_approved_id,
+		a.f_first_pub_date,
+		a.f_pub_date,
+		a.f_has_key,
+		a.f_is_delete,
+		a.f_creation_date,
+		a.f_last_change_date
+	</sql>
+	<!--查询结果集 -->
+	<resultMap id="beanMap" type="com.hfq.house.manager.entity.model.HouseBase">
+		<result property="id" column="id" />
+		<result property="houseSellId" column="f_house_sell_id" />
+		<result property="isSale" column="f_is_sale" />
+		<result property="status" column="f_status" />
+		<result property="ext400" column="f_ext400" />
+		<result property="houseComment" column="f_house_comment" />
+		<result property="canCheckinDate" column="f_can_checkin_date" />
+		<result property="rentPriceMonth" column="f_rent_price_month" />
+		<result property="rentPriceDay" column="f_rent_price_day" />
+		<result property="serviceFee" column="f_service_fee" />
+		<result property="depositFee" column="f_deposit_fee" />
+		<result property="depositMonth" column="f_deposit_month" />
+		<result property="periodMonth" column="f_period_month" />
+		<result property="companyId" column="f_company_id" />
+		<result property="companyName" column="f_company_name" />
+		<result property="agencyId" column="f_agency_id" />
+		<result property="agencyPhone" column="f_agency_phone" />
+		<result property="agencyName" column="f_agency_name" />
+		<result property="agencyIntroduce" column="f_agency_introduce" />
+		<result property="agencyGender" column="f_agency_gender" />
+		<result property="agencyAvatar" column="f_agency_avatar" />
+		<result property="approvedId" column="f_approved_id" />
+		<result property="firstPubDate" column="f_first_pub_date" />
+		<result property="pubDate" column="f_pub_date" />
+		<result property="hasKey" column="f_has_key" />
+		<result property="isDelete" column="f_is_delete" />
+		<result property="creationDate" column="f_creation_date" />
+		<result property="lastChangeDate" column="f_last_change_date" />
+	</resultMap>
+
+	<!-- 分页查询房源列表 -->
+	<select id="selectHouseBaseBySellId" resultMap="beanMap">
+		select
+		<include refid="columns" />
+		from t_house_base a
+		where a.f_house_sell_id = #{houseSellId}
+	</select>
+
+	<!-- 选择更新 -->
+	<update id="updateSelective" parameterType="com.hfq.house.manager.entity.model.HouseBase">
+		UPDATE t_house_base a
+		<trim prefix="set" suffixOverrides=",">
+			<if test="vo.isSale != null"> a.f_is_sale = #{vo.isSale},</if>
+			<if test="vo.status != null"> a.f_status = #{vo.status},</if>
+			<if test="vo.ext400 != null"> a.f_ext400 = #{vo.ext400},</if>
+			<if test="vo.houseComment != null"> a.f_house_comment = #{vo.houseComment},</if>
+			<if test="vo.canCheckinDate != null"> a.f_can_checkin_date = #{vo.canCheckinDate},</if>
+			<if test="vo.rentPriceMonth != null"> a.f_rent_price_month = #{vo.rentPriceMonth},</if>
+			<if test="vo.rentPriceDay != null"> a.f_rent_price_day = #{vo.rentPriceDay},</if>
+			<if test="vo.serviceFee != null"> a.f_service_fee = #{vo.serviceFee},</if>
+			<if test="vo.depositFee != null"> a.f_deposit_fee = #{vo.depositFee},</if>
+			<if test="vo.depositMonth != null"> a.f_deposit_month = #{vo.depositMonth},</if>
+			<if test="vo.periodMonth != null"> a.f_period_month = #{vo.periodMonth},</if>
+			<if test="vo.companyId != null"> a.f_company_id = #{vo.companyId},</if>
+			<if test="vo.companyName != null"> a.f_company_name = #{vo.companyName},</if>
+			<if test="vo.agencyId != null"> a.f_agency_id = #{vo.agencyId},</if>
+			<if test="vo.agencyPhone != null"> a.f_agency_phone = #{vo.agencyPhone},</if>
+			<if test="vo.agencyName != null"> a.f_agency_name = #{vo.agencyName},</if>
+			<if test="vo.agencyIntroduce != null"> a.f_agency_introduce = #{vo.agencyIntroduce},</if>
+			<if test="vo.agencyGender != null"> a.f_agency_gender = #{vo.agencyGender},</if>
+			<if test="vo.agencyAvatar != null"> a.f_agency_avatar = #{vo.agencyAvatar},</if>
+			<if test="vo.approvedId != null"> a.f_approved_id = #{vo.approvedId},</if>
+			<if test="vo.firstPubDate != null"> a.f_first_pub_date = #{vo.firstPubDate},</if>
+			<if test="vo.pubDate != null"> a.f_pub_date = #{vo.pubDate},</if>
+			<if test="vo.hasKey != null"> a.f_has_key = #{vo.hasKey},</if>
+			<if test="vo.isDelete != null"> a.f_is_delete = #{vo.isDelete},</if>
+			<if test="vo.lastChangeDate != null"> a.f_last_change_date = now()</if>
+		</trim>
+		WHERE a.f_house_sell_id = #{vo.houseSellId}
+	</update>
+	
+</mapper>

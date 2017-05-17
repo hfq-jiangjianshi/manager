@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hfq.house.manager.mapper.CodeTypeMapper">
+
+
+	<sql id="columns">
+		a.id,
+		a.code_name,
+		a.code_value,
+		a.type_code,
+		a.type_name
+	</sql>
+	<!--查询结果集 -->
+	<resultMap id="beanMap" type="com.hfq.house.manager.common.CodeType">
+		<result property="id" column="id" />
+		<result property="codeName" column="code_name" />
+		<result property="codeValue" column="code_value" />
+		<result property="typeCode" column="type_code" />
+		<result property="typeName" column="type_name" />
+	</resultMap>
+
+	<select id="selectByTypeCode" resultMap="beanMap">
+		select
+		<include refid="columns" />
+		from sys_code a
+		where a.type_code = #{typeCode}
+	</select>
+
+</mapper>

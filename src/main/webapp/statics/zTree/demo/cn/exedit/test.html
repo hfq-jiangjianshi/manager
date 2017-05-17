@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<TITLE>ZTREE DEMO - beforeDrag / onDrag / beforeDrop / onDrop</TITLE>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../css/demo.css" type="text/css">
+<link rel="stylesheet" href="../../../css/zTreeStyle/zTreeStyle.css"
+	type="text/css">
+<script type="text/javascript" src="../../../js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript"
+	src="../../../js/jquery.ztree.core-3.2.js"></script>
+<script type="text/javascript"
+	src="../../../js/jquery.ztree.excheck-3.2.js"></script>
+<script type="text/javascript"
+	src="../../../js/jquery.ztree.exedit-3.2.js"></script>
+<SCRIPT type="text/javascript">
+		<!--
+		var IDMark_Switch = "_switch",
+		IDMark_Icon = "_ico",
+		IDMark_Span = "_span",
+		IDMark_Input = "_input",
+		IDMark_Check = "_check",
+		IDMark_Edit = "_edit",
+		IDMark_Remove = "_remove",
+		IDMark_Ul = "_ul",
+		IDMark_A = "_a";
+		var setting = {
+			edit: {
+				drag: {
+					autoExpandTrigger: true,
+					prev: false,
+					inner: dropInner,
+					next: false
+				},
+				enable:true,
+				showRemoveBtn: false,
+				showRenameBtn: false				
+			},
+			data: {
+				simpleData: {
+					enable: true
+				},
+				keep:{
+					leaf:true,
+					parent:true
+				}
+			},
+			view: {
+				addHoverDom: addHoverDom,
+				removeHoverDom: removeHoverDom
+			},
+			callback: {
+				beforeDrag: beforeDrag,				
+				onDrop: onDrop
+			}
+		};
+
+		var zNodes =[
+			{ id:1, pId:0, name:"文件夹 1", open:true, drag:false,folder:true},
+			{ id:11, pId:1, name:"资料 1-1", dropInner:false,removeBtn:true},
+			{ id:12, pId:1, name:"资料 1-2", dropInner:false,removeBtn:true},
+			
+			{ id:2, pId:0, name:"文件夹 2", open:true, drag:false,folder:true},
+			{ id:21, pId:2, name:"资料 2-1", dropInner:false,removeBtn:true},
+			{ id:22, pId:2, name:"资料 2-2", dropInner:false,removeBtn:true},
+			
+			{ id:3, pId:0, name:"会商 1", open:true, childDrag:false,drag:false,dropInner:false},
+			{ id:31, pId:3, name:"会商资料 1", dropInner:false},
+			{ id:32, pId:3, name:"会商资料 2", dropInner:false},
+			
+			{ id:4, pId:0, name:"会商 2", open:true, childDrag:false,drag:false,dropInner:false},
+			{ id:41, pId:4, name:"会商资料 1",dropInner:false},
+			{ id:42, pId:4, name:"会商资料 2",dropInner:false}
+			
+			
+		];
+		var curDragNodes,curTargetNode,j=0;
+		function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
+			if(curTargetNode != null && curTargetNode.folder == true){
+				alert('插入数据库操作'+j);				
+			}			
+		}
+		function dropInner(treeId, nodes, targetNode) {	
+			j=0;
+			curTargetNode = targetNode;
+			if(targetNode == null) return false;
+			if (targetNode && targetNode.dropInner == false) {
+				return false;
+			} else {
+				for (var i=0,l=curDragNodes.length; i<l; i++) {j++;
+					if (!targetNode && curDragNodes[i].dropRoot == false) {
+						return false;
+					} else if (curDragNodes[i].parentTId && curDragNodes[i].getParentNode() !== targetNode && curDragNodes[i].getParentNode().childOuter == false) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		
+
+		var curDragNodes;
+		function beforeDrag(treeId, treeNodes) {				
+			for (var i=0,l=treeNodes.length; i<l; i++) {
+				if (treeNodes[i].drag == false) {
+					curDragNodes = null;
+					return false;
+				} else if (treeNodes[i].parentTId && treeNodes[i].getParentNode().childDrag == false) {
+					curDragNodes = null;
+					return false;
+				}
+			}
+			curDragNodes = treeNodes;
+			return true;
+		}
+		function addHoverDom(treeId, treeNode) {			
+			if (treeNode.removeBtn && treeNode.removeBtn==true){		
+				var aObj = $("#" + treeNode.tId + IDMark_A);
+				
+				if ($("#removeBtn_"+treeNode.id).length>0) return;
+				var remvoeStr = "<span class='button remove' id='removeBtn_" +treeNode.id+ "' title='删除'></span>";
+				aObj.append(remvoeStr);	
+						
+				var btn = $("#removeBtn_"+treeNode.id);
+				if (btn) btn.bind("click", function(){alert("删除数据库操作，删除节点：" + treeNode.name);});
+			}
+		}
+		
+		function removeHoverDom(treeId, treeNode) {
+			if ($("#removeBtn_"+treeNode.id).length>0){
+				$("#removeBtn_"+treeNode.id).unbind().remove();			
+			}
+		}
+		
+		function getTime() {
+			var now= new Date(),
+			h=now.getHours(),
+			m=now.getMinutes(),
+			s=now.getSeconds(),
+			ms=now.getMilliseconds();
+			return (h+":"+m+":"+s+ " " +ms);
+		}
+		
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);			
+		});
+		//-->
+	</SCRIPT>
+</HEAD>
+
+<BODY>
+
+	<ul id="treeDemo" class="ztree"></ul>
+
+</BODY>
+</HTML>
