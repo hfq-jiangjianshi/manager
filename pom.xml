@@ -97,6 +97,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+<<<<<<< HEAD
 		</dependency>
 	</dependencies>
 
@@ -125,6 +126,5 @@
 			</resource>
 		</resources>
 	</build>
-
-
+	
 </project>
