@@ -34,19 +34,24 @@ public class UserServiceImpl extends BaseController implements UserService {
 
 		List<SysUser> userList = sysUserMapper.selectByAccount(account);
 		SysUser user = null;
-		if (!CollectionUtils.isEmpty(userList)) {
+		if (CollectionUtils.isEmpty(userList)) {
+			return fail("用户不存在");
+		} else {
 			user = userList.get(0);
 		}
 		String encryptPassword = EncryptUtil.md5(user.getAccount() + user.getSalt() + password);
 		if (!user.getPassword().equals(encryptPassword)) {
-			return fail("用户名或密码错误");
+			return fail("密码错误");
 		}
 		String token = UUID.randomUUID().toString().replaceAll("\\-", "");
-		user.setToken(token);
-		user.setLoginIp(reqIp);
-		user.setLastLoginTime(new Date());
-		sysUserMapper.updateSelective(user);
-		return success("登录成功", user);
+		
+		SysUser loginUser = new SysUser();
+		loginUser.setId(user.getId());
+		loginUser.setToken(token);
+		loginUser.setLoginIp(reqIp);
+		loginUser.setLastLoginTime(new Date());
+		sysUserMapper.updateSelective(loginUser);
+		return success("登录成功", loginUser);
 	}
 
 }
