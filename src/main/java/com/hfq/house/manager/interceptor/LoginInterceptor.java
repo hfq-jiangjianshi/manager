@@ -34,7 +34,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		if (handler instanceof HandlerMethod) {
 			String uri = req.getRequestURI();
-			String contextPath = req.getContextPath();
 			List<String> exculdeList = Arrays.asList("/", "/error", "/index", "/login", "/logout", "/IncJs.a");// 无需校验的URI
 			if (exculdeList.contains(uri)) {
 				return true;

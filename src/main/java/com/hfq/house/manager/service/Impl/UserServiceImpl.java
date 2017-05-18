@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import com.alibaba.druid.util.StringUtils;
 import com.hfq.house.manager.common.RespMsg;
 import com.hfq.house.manager.controller.BaseController;
 import com.hfq.house.manager.entity.model.SysUser;
@@ -31,8 +32,13 @@ public class UserServiceImpl extends BaseController implements UserService {
 
 		String account = req.getParameter("account");
 		String password = req.getParameter("password");
+		if(StringUtils.isEmpty(account)){
+			return fail("用户名为空");
+		}
+		if(StringUtils.isEmpty(password)){
+			return fail("密码为空");
+		}
 		String reqIp = req.getRemoteAddr();
-
 		List<SysUser> userList = sysUserMapper.selectByAccount(account);
 		SysUser user = null;
 		if (CollectionUtils.isEmpty(userList)) {

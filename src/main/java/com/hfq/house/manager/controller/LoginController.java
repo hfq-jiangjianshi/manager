@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hfq.house.manager.common.RespMsg;
@@ -27,7 +28,7 @@ public class LoginController extends BaseController{
 		return "main";
 	}
 
-	@RequestMapping(path = "/login")
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public RespMsg login(HttpServletRequest req) {
 		
