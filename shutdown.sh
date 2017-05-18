@@ -1,1 +1,1 @@
-curl -X POST localhost/shutdown
+curl -X POST localhost:8089/shutdown
