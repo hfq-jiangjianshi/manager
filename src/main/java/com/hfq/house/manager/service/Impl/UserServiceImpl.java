@@ -39,15 +39,15 @@ public class UserServiceImpl extends BaseController implements UserService {
 			return fail("密码为空");
 		}
 		String reqIp = req.getRemoteAddr();
-		List<SysUser> userList = sysUserMapper.selectByAccount(account);
+		List<SysUser> userList = sysUserMapper.selectByAccount(account.trim());
 		SysUser user = null;
 		if (CollectionUtils.isEmpty(userList)) {
 			return fail("用户不存在");
 		} else {
 			user = userList.get(0);
 		}
-		String encryptPassword = EncryptUtil.md5(user.getAccount() + user.getSalt() + password);
-		if (!user.getPassword().equals(encryptPassword)) {
+		String encryptPassword = EncryptUtil.md5(user.getAccount() + user.getSalt() + password.trim());
+		if (!encryptPassword.equals(user.getPassword())) {
 			return fail("密码错误");
 		}
 		String token = UUID.randomUUID().toString().replaceAll("\\-", "");
