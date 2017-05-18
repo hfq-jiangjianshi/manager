@@ -160,7 +160,7 @@
 	<fieldset style="border:1px solid #abcdef;">
 		<legend><strong>图片信息</strong></legend>
 		<#list vo.imgsList as img>
-			<span>
+			<div style="float:left; margin-left:15px;">
 				<div>
 					<span>图片ID: ${img.id?c!''}</span>
 						<#if img.isDefault==1> 
@@ -180,7 +180,7 @@
 						<input name="validImg" value="${img.id?c!''}" type="checkbox" checked="checked"><span>保留</span>
 					</#if>
 				</div>
-			</span>
+			</div>
 		</#list>
 	</fieldset>
 	<div style="padding: 10px 10px;">

@@ -29,16 +29,16 @@ public class PageInterceptor implements HandlerInterceptor {
 			throws Exception {
 
 		String page = "1"; // 第几页
-		String pageSize = "20";// 每页显示几条
+		String rows = "20";// 每页显示几条
 		if (StringUtil.isNotEmpty(request.getParameter("page"))) {
 			page = request.getParameter("page");
 		}
-		if (StringUtil.isNotEmpty(request.getParameter("pageSize"))) {
-			pageSize = request.getParameter("pageSize");
+		if (StringUtil.isNotEmpty(request.getParameter("rows"))) {
+			rows = request.getParameter("rows");
 		}
 		if (StringUtil.isNotEmpty(request.getParameter("page"))
-				|| StringUtil.isNotEmpty(request.getParameter("pageSize"))) {
-			PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(pageSize));
+				|| StringUtil.isNotEmpty(request.getParameter("rows"))) {
+			PageHelper.startPage(Integer.parseInt(page), Integer.parseInt(rows));
 		}
 
 		return true;
