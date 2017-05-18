@@ -2,6 +2,17 @@
 <title>编辑房源</title>
 <script type="text/javascript" src="${basePath}/stat/room/roomEdit.js"></script>
 <script type="text/javascript" src="${basePath}/IncJs.a?c=is_sale&c=orientation&c=decoration&c=room_type&c=room_status"></script>
+<style>
+.img_list {
+	float: left;
+	margin-left: 15px;
+}
+
+img {
+	width: 300px;
+	height: 200px;
+}
+</style>
 </head>
 <body id="layout" class="easyui-layout" style="overflow: auto">
 	<form id="editForm">
@@ -176,7 +187,7 @@
 	<fieldset style="border:1px solid #abcdef;">
 		<legend><strong>图片信息</strong></legend>
 		<#list vo.imgsList as img>
-			<div style="float:left; margin-left:15px;">
+			<div class="img_list">
 				<div>
 					<span>图片ID: ${img.id?c!''}</span>
 						<#if img.isDefault==1> 
@@ -187,7 +198,7 @@
 					<span>首图</span>
 				</div>
 				<div>
-					<img alt="房源图片" width="300" height="180" src="${img.picRootPath !''}">
+					<img alt="房源图片" src="${img.picRootPath !''}">
 				</div>
 				<div>
 					<#if img.isDelete==1> 
