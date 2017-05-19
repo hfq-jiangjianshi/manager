@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo "----------------------------------------------------------------------------------------------------------------------"
 echo "Start pull new code from repository......"
-cd /home/devops/hzf_platform_manager/manager
+cd /data/www/hzf_platform_manager/manager
 git pull
 
 echo "----------------------------------------------------------------------------------------------------------------------"
