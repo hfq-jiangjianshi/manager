@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.hfq</groupId>
-	<artifactId>sys_manager</artifactId>
+	<artifactId>hzf_platform_manager</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>sys_manager</name>
-	<description>sys_manager</description>
+	<name>hzf_platform_manager</name>
+	<description>hzf_platform_manager</description>
 
 
 	<parent>
