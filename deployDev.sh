@@ -16,7 +16,7 @@ echo "--------------------------------------------------------------------------
 echo "Start build project......"
 mvn clean package
 cd target
-cp sys_manager-1.0.0.jar ../..
+cp hzf_platform_manager-1.0.0.jar ../..
 cd ../..
 nohup java -jar *.jar & tail -f nohup.out
 
