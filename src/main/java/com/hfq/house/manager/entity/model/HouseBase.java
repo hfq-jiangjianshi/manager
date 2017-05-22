@@ -22,8 +22,8 @@ public class HouseBase implements Serializable {
 	private Integer status; // 房源状态
 	private String ext400; // 400分机号
 	private String houseComment; // 房源描述
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")  
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date canCheckinDate; // 可入住时间
 	private Integer rentPriceMonth; // 月租金
 	private Integer rentPriceDay; // 日租金
@@ -46,5 +46,6 @@ public class HouseBase implements Serializable {
 	private Integer isDelete; // 该记录是否已被删除，1代表删除；0代表有效
 	private Date creationDate; // 创建时间
 	private Date lastChangeDate; // 更新时间
-	
+	private Integer sourceFlag;// 来源标识 0:中介 1：抓取
+
 }

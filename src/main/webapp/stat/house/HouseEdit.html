@@ -1,7 +1,7 @@
 <#include "../common/include.html"/>
 <title>编辑房源</title>
 <script type="text/javascript" src="${basePath}/stat/house/HouseEdit.js"></script>
-<script type="text/javascript" src="${basePath}/IncJs.a?c=is_sale&c=house_status&c=rent_type&c=orientation&c=decoration"></script>
+<script type="text/javascript" src="${basePath}/IncJs.a?c=is_sale&c=house_status&c=rent_type&c=orientation&c=decoration&c=data_source"></script>
 <style>
 .img_list {
 	float: left;
@@ -104,9 +104,9 @@ img {
 			<span>来源:</span>
 			<span>${vo.detail.source!''}</span>
 			<span>方式:</span>
-			<span>${vo.detail.entireRent!''}</span>
+			<span id="sourceFlag">${vo.base.sourceFlag!''}</span>
 			<span>公司:</span>
-			<span>${vo.base.companyName!''}</span>
+			<span>${vo.base.companyName!'无'}</span>
 		</div>
 		<table>
 			<tr>

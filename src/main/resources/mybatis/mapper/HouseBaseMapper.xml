@@ -30,6 +30,7 @@
 		a.f_pub_date,
 		a.f_has_key,
 		a.f_is_delete,
+		a.f_source_flag,
 		a.f_creation_date,
 		a.f_last_change_date
 	</sql>
@@ -61,6 +62,7 @@
 		<result property="pubDate" column="f_pub_date" />
 		<result property="hasKey" column="f_has_key" />
 		<result property="isDelete" column="f_is_delete" />
+		<result property="sourceFlag" column="f_source_flag" />
 		<result property="creationDate" column="f_creation_date" />
 		<result property="lastChangeDate" column="f_last_change_date" />
 	</resultMap>

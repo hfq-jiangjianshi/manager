@@ -151,7 +151,10 @@ function loadData() {
 	$("#canCheckinDate").click(function() {
 		WdatePicker();
 	})
-
+	
+	// 转换页面上的值
+	var $span = $("#sourceFlag");
+	$span.text(get_js_codeText('data_sources_js', $span.text()))
 }
 
 
