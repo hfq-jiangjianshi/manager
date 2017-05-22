@@ -1,7 +1,6 @@
 package com.hfq.house.manager.enums;
 
 import com.alibaba.druid.util.StringUtils;
-import com.sun.tools.extcheck.Main;
 
 /**
  * 房屋标签
