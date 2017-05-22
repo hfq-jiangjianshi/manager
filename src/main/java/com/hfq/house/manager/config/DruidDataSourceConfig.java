@@ -45,7 +45,7 @@ public class DruidDataSourceConfig {
     }
 
     @Bean(destroyMethod = "close", name = "primaryDataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.primary")
+    @ConfigurationProperties(prefix = "spring.datasource")
     @Primary
     public DataSource dataSource() {
         pool = new DruidDataSource();

@@ -31,33 +31,33 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
-
-		if (handler instanceof HandlerMethod) {
-			String uri = req.getRequestURI();
-			List<String> exculdeList = Arrays.asList("/", "/error", "/index", "/login", "/logout", "/IncJs.a");// 无需校验的URI
-			if (exculdeList.contains(uri)) {
-				return true;
-			}
-			HttpSession session = req.getSession();
-			SysUser loginUser = (SysUser) session.getAttribute(session.getId());
-			if (loginUser == null) {
-				res.sendRedirect("/index");
-				return false;
-			}
-			SysUser dbUser = sysUserMapper.selectByPrimaryKey(loginUser.getId());
-			if (loginUser.getToken().equals(dbUser.getToken())) {
-				return true;
-			} else {
-				res.setCharacterEncoding("UTF-8");
-				res.setContentType("text/html; charset=utf-8");
-				PrintWriter writer = res.getWriter();
-				session.invalidate();
-				writer.write("登录token已过期，请重新登录");
-				return false;
-			}
-		} else {
-			return true;
-		}
+		return true;
+//		if (handler instanceof HandlerMethod) {
+//			String uri = req.getRequestURI();
+//			List<String> exculdeList = Arrays.asList("/", "/error", "/index", "/login", "/logout", "/IncJs.a");// 无需校验的URI
+//			if (exculdeList.contains(uri)) {
+//				return true;
+//			}
+//			HttpSession session = req.getSession();
+//			SysUser loginUser = (SysUser) session.getAttribute(session.getId());
+//			if (loginUser == null) {
+//				res.sendRedirect("/index");
+//				return false;
+//			}
+//			SysUser dbUser = sysUserMapper.selectByPrimaryKey(loginUser.getId());
+//			if (loginUser.getToken().equals(dbUser.getToken())) {
+//				return true;
+//			} else {
+//				res.setCharacterEncoding("UTF-8");
+//				res.setContentType("text/html; charset=utf-8");
+//				PrintWriter writer = res.getWriter();
+//				session.invalidate();
+//				writer.write("登录token已过期，请重新登录");
+//				return false;
+//			}
+//		} else {
+//			return true;
+//		}
 
 	}
 
