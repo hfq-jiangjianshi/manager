@@ -26,7 +26,6 @@ public class CommonController {
 	@RequestMapping(path = "/IncJs.a")
 	public void CommsJsController(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		@SuppressWarnings("unchecked")
 		SysUser user = (SysUser) request.getSession().getAttribute(request.getSession().getId());
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/javascript");
