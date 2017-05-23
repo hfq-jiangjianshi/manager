@@ -79,7 +79,13 @@ var dataGridParams = {
 		field : 'rentPriceMonth',
 		title : '房间租金',
 		sortable : true,
-		width : 80
+		width : 80,
+		formatter : function(value) {
+			if (value != '') {
+				return value / 100;
+			}
+			return '';
+		}
 	}, {
 		field : 'orientations',
 		title : '朝向',

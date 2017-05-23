@@ -69,7 +69,13 @@ var dataGridParams = {
 		field : 'rentPriceMonth',
 		title : '月租金',
 		sortable : true,
-		width : 80
+		width : 80,
+		formatter : function(value) {
+			if (value != '') {
+				return value / 100;
+			}
+			return '';
+		}
 	}, {
 		field : 'entireRent',
 		title : '出租类型',

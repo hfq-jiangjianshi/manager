@@ -186,6 +186,7 @@
 				and b.f_rent_price_month between #{rentPriceMonth} and #{rentPriceMonthEnd}
 			</if>
 		</where>
+		order by a.f_last_change_date desc
 	</select>
 	
 	<!-- 分页查询房间列表 -->
@@ -233,6 +234,7 @@
 				and b.f_rent_price_month between #{rentPriceMonth} and #{rentPriceMonthEnd}
 			</if>
 		</where>
+		order by a.f_last_change_date desc
 	</select>
 	
 	<!-- 根据houseSellID查询实体类 -->
