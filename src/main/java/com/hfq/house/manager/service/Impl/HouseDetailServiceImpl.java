@@ -76,24 +76,26 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 		HouseDetailEditVo editVo = new HouseDetailEditVo();
 		HouseDetail detail = houseDetailMapper.selectHouseDetailBySellId(houseSellId);
 		String houseTag = detail.getHouseTag();
-		String tags[] = houseTag.split(",");
-		StringBuffer sb = new StringBuffer();
-		for (String tag : tags) {// 将标签编码转为中文
-			if (!StringUtils.isEmpty(tag)) {
-				String cTag = HouseTagEnum.getDescByCode(Integer.parseInt(tag));
-				sb.append(cTag).append(",");
+		if (!StringUtils.isEmpty(houseTag)) {
+			String tags[] = houseTag.split(",");
+			StringBuffer sb = new StringBuffer();
+			for (String tag : tags) {// 将标签编码转为中文
+				if (!StringUtils.isEmpty(tag)) {
+					String cTag = HouseTagEnum.getDescByCode(Integer.parseInt(tag));
+					sb.append(cTag).append(",");
+				}
 			}
-		}
-		if (sb.length() > 0) {
-			detail.setHouseTag(sb.substring(0, sb.length() - 1));
+			if (sb.length() > 0) {
+				detail.setHouseTag(sb.substring(0, sb.length() - 1));
+			}
 		}
 		HouseBase base = houseBaseMapper.selectHouseBaseBySellId(houseSellId);
 		base.setRentPriceMonth(base.getRentPriceMonth() / HUNDRED);// 月租金
 		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
 		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
 		List<HousePics> imgsList = housePicsMapper.selectHousePicsBySellId(houseSellId);
-		for(HousePics pic :imgsList){
-			if(StringUtils.isEmpty(pic.getPicRootPath())){
+		for (HousePics pic : imgsList) {
+			if (StringUtils.isEmpty(pic.getPicRootPath())) {
 				pic.setPicRootPath(pic.getPicWebPath());
 			}
 		}
@@ -211,23 +213,25 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 
 		RoomBase base = roomBaseMapper.selectRoomBaseByRoomId(roomId);
 		String houseTag = base.getRoomTag();
-		String tags[] = houseTag.split(",");
-		StringBuffer sb = new StringBuffer();
-		for (String tag : tags) {// 将标签编码转为中文
-			if (!StringUtils.isEmpty(tag)) {
-				String cTag = HouseTagEnum.getDescByCode(Integer.parseInt(tag));
-				sb.append(cTag).append(",");
+		if (!StringUtils.isEmpty(houseTag)) {
+			String tags[] = houseTag.split(",");
+			StringBuffer sb = new StringBuffer();
+			for (String tag : tags) {// 将标签编码转为中文
+				if (!StringUtils.isEmpty(tag)) {
+					String cTag = HouseTagEnum.getDescByCode(Integer.parseInt(tag));
+					sb.append(cTag).append(",");
+				}
 			}
-		}
-		if (sb.length() > 0) {
-			base.setRoomTag(sb.substring(0, sb.length() - 1));
+			if (sb.length() > 0) {
+				base.setRoomTag(sb.substring(0, sb.length() - 1));
+			}
 		}
 		base.setRentPriceMonth(base.getRentPriceMonth() / HUNDRED);// 月租金
 		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
 		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
 		List<HousePics> imgsList = housePicsMapper.selectRoomPicsByRoomId(roomId);
-		for(HousePics pic :imgsList){
-			if(StringUtils.isEmpty(pic.getPicRootPath())){
+		for (HousePics pic : imgsList) {
+			if (StringUtils.isEmpty(pic.getPicRootPath())) {
 				pic.setPicRootPath(pic.getPicWebPath());
 			}
 		}
