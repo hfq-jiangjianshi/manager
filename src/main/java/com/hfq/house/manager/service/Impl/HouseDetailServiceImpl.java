@@ -92,6 +92,11 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
 		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
 		List<HousePics> imgsList = housePicsMapper.selectHousePicsBySellId(houseSellId);
+		for(HousePics pic :imgsList){
+			if(StringUtils.isEmpty(pic.getPicRootPath())){
+				pic.setPicRootPath(pic.getPicWebPath());
+			}
+		}
 		List<HouseSetting> settingList = houseSettingMapper.selectHouseSettingBySellId(houseSellId);
 
 		List<SettingEditVo> allSettingList = SettingsEnum.getSettingList();
@@ -221,6 +226,11 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
 		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
 		List<HousePics> imgsList = housePicsMapper.selectRoomPicsByRoomId(roomId);
+		for(HousePics pic :imgsList){
+			if(StringUtils.isEmpty(pic.getPicRootPath())){
+				pic.setPicRootPath(pic.getPicWebPath());
+			}
+		}
 		List<HouseSetting> settingList = houseSettingMapper.selectRoomSettingByRoomId(roomId);
 
 		List<SettingEditVo> allSettingList = SettingsEnum.getSettingList();
