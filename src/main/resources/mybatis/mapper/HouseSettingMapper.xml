@@ -46,19 +46,12 @@
 		where a.id = #{id} 
 	</select>
 	
-	<select id="selectHouseSettingBySellId" resultMap="beanMap">
+	<select id="selectSettingBySellIdAndRoomId" resultMap="beanMap">
 		select 
 		<include refid="columns" /> 
 		from t_house_setting a
-		where a.f_house_sell_id = #{houseSellId} 
-		and a.f_room_id = 0 and a.f_is_delete = 0
-	</select>
-	
-	<select id="selectRoomSettingByRoomId" resultMap="beanMap">
-		select 
-		<include refid="columns" /> 
-		from t_house_setting a
-		where a.f_room_id = #{roomId} 
+		where a.f_house_sell_id = #{houseSellId}  
+		and a.f_room_id = #{roomId} 
 		and a.f_is_delete = 0
 	</select>
 	

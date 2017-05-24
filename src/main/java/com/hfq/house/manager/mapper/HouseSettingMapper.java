@@ -8,13 +8,13 @@ import com.hfq.house.manager.entity.model.HouseSetting;
 
 public interface HouseSettingMapper {
 
-	List<HouseSetting> selectHouseSettingBySellId(String houseSellId);
-
 	HouseSetting selectByPrimaryKey(Integer id);
 
 	int updateIsDeleteById(@Param("settingId") Integer settingId, @Param("delete") Integer delete);
 
 	int insert(HouseSetting vo);
 
-	List<HouseSetting> selectRoomSettingByRoomId(String roomId);
+	List<HouseSetting> selectSettingBySellIdAndRoomId(@Param("houseSellId") String houseSellId,
+			@Param("roomId") String roomId);
+
 }

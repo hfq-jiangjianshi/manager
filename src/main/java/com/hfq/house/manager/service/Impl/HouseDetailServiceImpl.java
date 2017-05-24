@@ -100,7 +100,7 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 				pic.setPicRootPath(pic.getPicWebPath());
 			}
 		}
-		List<HouseSetting> settingList = houseSettingMapper.selectHouseSettingBySellId(houseSellId);
+		List<HouseSetting> settingList = houseSettingMapper.selectSettingBySellIdAndRoomId(houseSellId, "0");
 
 		List<SettingEditVo> allSettingList = SettingsEnum.getSettingList();
 		for (SettingEditVo vo : allSettingList) {
@@ -236,7 +236,7 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 				pic.setPicRootPath(pic.getPicWebPath());
 			}
 		}
-		List<HouseSetting> settingList = houseSettingMapper.selectRoomSettingByRoomId(roomId);
+		List<HouseSetting> settingList = houseSettingMapper.selectSettingBySellIdAndRoomId(houseSellId, roomId);
 
 		List<SettingEditVo> allSettingList = SettingsEnum.getSettingList();
 		for (SettingEditVo vo : allSettingList) {
