@@ -35,18 +35,12 @@
 		where a.f_house_sell_id = #{houseSellId} and a.f_is_delete = 0
 	</select>
 	
-	<select id="selectHousePicsBySellId" resultMap="beanMap">
+	<select id="selectPicsBySellIdAndRoomId" resultMap="beanMap">
 		select 
 		<include refid="columns" /> 
 		from t_house_pics a
 		where a.f_house_sell_id = #{houseSellId}
-	</select>
-	
-	<select id="selectRoomPicsByRoomId" resultMap="beanMap">
-		select 
-		<include refid="columns" /> 
-		from t_house_pics a
-		where a.f_room_id = #{roomId}
+		and a.f_room_id = #{roomId}
 	</select>
 	
 	

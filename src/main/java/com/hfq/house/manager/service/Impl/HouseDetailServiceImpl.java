@@ -94,7 +94,7 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 		base.setRentPriceMonth(base.getRentPriceMonth() / HUNDRED);// 月租金
 		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
 		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
-		List<HousePics> imgsList = housePicsMapper.selectHousePicsBySellId(houseSellId);
+		List<HousePics> imgsList = housePicsMapper.selectPicsBySellIdAndRoomId(houseSellId, "0");
 		for (HousePics pic : imgsList) {
 			if (StringUtils.isEmpty(pic.getPicRootPath())) {
 				pic.setPicRootPath(pic.getPicWebPath());
@@ -230,7 +230,7 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 		base.setRentPriceMonth(base.getRentPriceMonth() / HUNDRED);// 月租金
 		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
 		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
-		List<HousePics> imgsList = housePicsMapper.selectRoomPicsByRoomId(roomId);
+		List<HousePics> imgsList = housePicsMapper.selectPicsBySellIdAndRoomId(houseSellId, roomId);
 		for (HousePics pic : imgsList) {
 			if (StringUtils.isEmpty(pic.getPicRootPath())) {
 				pic.setPicRootPath(pic.getPicWebPath());
