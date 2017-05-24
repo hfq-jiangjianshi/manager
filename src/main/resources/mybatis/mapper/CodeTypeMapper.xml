@@ -5,25 +5,25 @@
 
 	<sql id="columns">
 		a.id,
-		a.code_name,
-		a.code_value,
-		a.type_code,
-		a.type_name
+		a.f_code_name,
+		a.f_code_value,
+		a.f_type_code,
+		a.f_type_name
 	</sql>
 	<!--查询结果集 -->
 	<resultMap id="beanMap" type="com.hfq.house.manager.common.CodeType">
 		<result property="id" column="id" />
-		<result property="codeName" column="code_name" />
-		<result property="codeValue" column="code_value" />
-		<result property="typeCode" column="type_code" />
-		<result property="typeName" column="type_name" />
+		<result property="codeName" column="f_code_name" />
+		<result property="codeValue" column="f_code_value" />
+		<result property="typeCode" column="f_type_code" />
+		<result property="typeName" column="f_type_name" />
 	</resultMap>
 
 	<select id="selectByTypeCode" resultMap="beanMap">
 		select
 		<include refid="columns" />
-		from sys_code a
-		where a.type_code = #{typeCode}
+		from t_sys_code a
+		where a.f_type_code = #{typeCode}
 	</select>
 
 </mapper>
