@@ -31,7 +31,6 @@ import com.hfq.house.manager.mapper.HousePicsMapper;
 import com.hfq.house.manager.mapper.HouseSettingMapper;
 import com.hfq.house.manager.mapper.RoomBaseMapper;
 import com.hfq.house.manager.service.HouseDetailService;
-import com.hfq.house.manager.util.DateUtil;
 
 @Service
 @Transactional
@@ -94,13 +93,13 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 		base.setRentPriceMonth(base.getRentPriceMonth() / HUNDRED);// 月租金
 		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
 		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
-		List<HousePics> imgsList = housePicsMapper.selectPicsBySellIdAndRoomId(houseSellId, "0");
+		List<HousePics> imgsList = housePicsMapper.selectPicsBySellIdAndRoomId(houseSellId, null);
 		for (HousePics pic : imgsList) {
 			if (StringUtils.isEmpty(pic.getPicRootPath())) {
 				pic.setPicRootPath(pic.getPicWebPath());
 			}
 		}
-		List<HouseSetting> settingList = houseSettingMapper.selectSettingBySellIdAndRoomId(houseSellId, "0");
+		List<HouseSetting> settingList = houseSettingMapper.selectSettingBySellIdAndRoomId(houseSellId, null);
 
 		List<SettingEditVo> allSettingList = SettingsEnum.getSettingList();
 		for (SettingEditVo vo : allSettingList) {

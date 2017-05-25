@@ -31,20 +31,26 @@
 
 	<select id="selectImgCountBySellId" resultType="int">
 		select count(1)
-		from t_house_pics a 
+		from t_house_pics a
 		where a.f_house_sell_id = #{houseSellId} and a.f_is_delete = 0
 	</select>
-	
+
 	<select id="selectPicsBySellIdAndRoomId" resultMap="beanMap">
-		select 
-		<include refid="columns" /> 
+		select
+		<include refid="columns" />
 		from t_house_pics a
-		where a.f_house_sell_id = #{houseSellId}
-		and a.f_room_id = #{roomId}
+		<where>
+			<if test="houseSellId!= null ">
+				a.f_house_sell_id=#{houseSellId}
+			</if>
+			<if test="roomId != null">
+				and a.f_room_id=#{roomId}
+			</if>
+		</where>
 	</select>
-	
-	
-	<!-- 选择性更新  -->
+
+
+	<!-- 选择性更新 -->
 	<update id="updateImgStatusSelective" parameterType="com.hfq.house.manager.entity.vo.HousePicEditVo">
 		UPDATE t_house_pics a
 		<trim prefix="set" suffixOverrides=",">
