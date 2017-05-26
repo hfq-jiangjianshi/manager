@@ -60,7 +60,9 @@
 		b.f_rent_price_month,
 		b.f_deposit_month,
 		b.f_period_month,
-		b.f_company_name
+		b.f_company_name,
+		b.f_first_pub_date,
+		b.f_pub_date
 	</sql>
 	
 	<sql id="b_R_columns">
@@ -68,7 +70,9 @@
 		b.f_rent_price_month,
 		b.f_deposit_month,
 		b.f_period_month,
-		b.id as roomId
+		b.id as roomId,
+		b.f_first_pub_date,
+		b.f_pub_date
 	</sql>
 	<!--查询结果集 -->
 	<resultMap id="beanMap"
@@ -130,6 +134,8 @@
 		<result property="depositMonth" column="f_deposit_month" />
 		<result property="periodMonth" column="f_period_month" />
 		<result property="companyName" column="f_company_name" />
+		<result property="firstPubDate" column="f_first_pub_date" />
+		<result property="pubDate" column="f_pub_date" />
 	</resultMap>
 	
 	<resultMap id="roomDetailDtoBeanMap"
@@ -139,6 +145,8 @@
 		<result property="depositMonth" column="f_deposit_month" />
 		<result property="periodMonth" column="f_period_month" />
 		<result property="roomId" column="roomId" />
+		<result property="firstPubDate" column="f_first_pub_date" />
+		<result property="pubDate" column="f_pub_date" />
 	</resultMap>
 
 	<!-- 分页查询房源列表 -->
@@ -186,7 +194,7 @@
 				and b.f_rent_price_month between #{rentPriceMonth} and #{rentPriceMonthEnd}
 			</if>
 		</where>
-		order by a.f_last_change_date desc
+		order by b.f_first_pub_date desc
 	</select>
 	
 	<!-- 分页查询房间列表 -->
@@ -234,7 +242,7 @@
 				and b.f_rent_price_month between #{rentPriceMonth} and #{rentPriceMonthEnd}
 			</if>
 		</where>
-		order by a.f_last_change_date desc
+		order by b.f_first_pub_date desc
 	</select>
 	
 	<!-- 根据houseSellID查询实体类 -->

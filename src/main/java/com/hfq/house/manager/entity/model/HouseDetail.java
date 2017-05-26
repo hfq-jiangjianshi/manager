@@ -67,10 +67,7 @@ public class HouseDetail implements Serializable {
 	private String source; // 来源
 	private Integer run; // 0:表示数据未经采集；1：表示数据已经采集过
 	private Integer isDelete; // 该记录是否已被删除，1代表删除；0代表有效
-
-	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date creationDate; // 创建时间
-	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date lastChangeDate; // 更新时间
 
 }

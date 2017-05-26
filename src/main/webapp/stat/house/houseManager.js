@@ -117,12 +117,12 @@ var dataGridParams = {
 			return '';
 		}
 	}, {
-		field : 'creationDate',
+		field : 'firstPubDate',
 		title : '创建时间',
 		sortable : true,
 		width : 150
 	}, {
-		field : 'lastChangeDate',
+		field : 'pubDate',
 		title : '更新时间',
 		sortable : true,
 		width : 150
