@@ -22,15 +22,15 @@ public class CodeGenTest {
 		System.out.println("start");
 
 		String driver = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://localhost:3306/db_huizhaofang_platform?characterEncoding=utf8";
-		String user = "root";
-		String password = "root";
+		String url = "jdbc:mysql://rm-2ze41lui7lm025267o.mysql.rds.aliyuncs.com/db_huizhaofang_platform?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8";
+		String user = "huizhaofang";
+		String password = "zAbw4jiQZMbFFQraPBxXCrMD";
 		try {
 			Class.forName(driver);
 			Connection conn = DriverManager.getConnection(url, user, password);
 			if (!conn.isClosed()) {
 				Statement statement = conn.createStatement();
-				String sql = "select COLUMN_NAME,COLUMN_COMMENT ,DATA_TYPE from information_schema.COLUMNS where table_name = 't_room_base'";
+				String sql = "select COLUMN_NAME,COLUMN_COMMENT ,DATA_TYPE from information_schema.COLUMNS where table_name = 't_sys_user'";
 				ResultSet rs = statement.executeQuery(sql);
 				while (rs.next()) {
 					String columnComment = rs.getString("COLUMN_COMMENT");
