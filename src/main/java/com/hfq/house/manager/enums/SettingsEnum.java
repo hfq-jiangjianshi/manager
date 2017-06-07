@@ -26,7 +26,7 @@ public enum SettingsEnum {
     MATTRESS("被褥", "2", "", SettingCategoryEnum.HOUSEHOLD),
     VASE("花瓶", "3", "", SettingCategoryEnum.HOUSEHOLD),
     LAMP("台灯", "4", "", SettingCategoryEnum.HOUSEHOLD),
-    DECORATION("台灯", "5", "", SettingCategoryEnum.HOUSEHOLD),
+//    DECORATION("台灯", "5", "", SettingCategoryEnum.HOUSEHOLD),
 
     WIFI("wifi", "1", "83", SettingCategoryEnum.OTHER);
 
