@@ -53,16 +53,19 @@ public class UserServiceImpl extends BaseController implements UserService {
 			return fail("密码错误");
 		}
 		String token = UUID.randomUUID().toString().replaceAll("\\-", "");
-
-		user.setToken(token);
-		user.setLoginIp(reqIp);
-		user.setLastLoginTime(new Date());
-		sysUserMapper.updateSelective(user);
 		
-		user.setLastLoginTime(lastLoginTime);
+		SysUser loginUser = new SysUser();
+		loginUser.setId(user.getId());
+		loginUser.setToken(token);
+		loginUser.setLoginIp(reqIp);
+		loginUser.setLastLoginTime(new Date());
+		sysUserMapper.updateSelective(loginUser);
+		
 		HttpSession session = req.getSession();
-		session.setAttribute(session.getId(), user);
-		return success("登录成功", user);
+		loginUser.setLastLoginTime(lastLoginTime);
+		loginUser.setRealName(user.getRealName());
+		session.setAttribute(session.getId(), loginUser);
+		return success("登录成功", loginUser);
 	}
 
 }

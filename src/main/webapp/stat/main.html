@@ -12,7 +12,7 @@ ul.top_nav {
 }
 ul.top_nav li {
 	text-align: center;
-	margin: 10px;
+	margin: 0px 10px 0px 10px;
 	display: block;
 	float: left;
 	width: 60px;
@@ -39,7 +39,7 @@ ul.top_nav li span {
 	color:#15428B;
 }
 #header {
-	height: 75px; border: #CCCCCC solid 1px;
+	height: 65px; border: #CCCCCC solid 1px;
 	background-image:  url('${basePath}/statics/img/head_bg.jpg');
 }
 </style>
@@ -48,7 +48,7 @@ ul.top_nav li span {
 	<!-- 导航条 -->
 	<div region="north" border="false" split="flase">
 		<div id="header">
-			<div style="overflow: hidden; height: 75px; float: right;">
+			<div style="overflow: hidden; height: 65px; float: right;">
 				<ul class="top_nav" style="float: right;">
 					<li><a href="javascript:void(0);" id="cpwd"
 						onclick="$('#globalnav1 li a').removeAttr('class');$('#cpwd').attr('class','cgColor');$('#mpwd').dialog('open');">
@@ -59,12 +59,12 @@ ul.top_nav li span {
 							<img title="安全退出" alt="安全退出" src="${basePath}/statics/img/logOut.png" />
 					</a></li>
 				</ul>
-				<img src="${basePath}/statics/img/login_title.png">
 			</div>
-			<div style="overflow: hidden; width: 340px; height: 80px; float: left;">
-				<div style="float: left; padding-left:10px;font-size:10pt">
+			<div style="overflow: hidden; width: 400px; height: 65px; padding-left:10px;">
+				<div style="font-size:10pt; padding-left:5px">
 					欢迎 <label id="com_label">未知</label>，上次登录：<label id="login_time">未登陆</label>
 				</div>
+				<img src="${basePath}/statics/img/login_title.png" height="40px">
 			</div>
 		</div>
 	</div>
