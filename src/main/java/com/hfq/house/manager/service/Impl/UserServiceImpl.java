@@ -28,40 +28,41 @@ public class UserServiceImpl extends BaseController implements UserService {
 	private SysUserMapper sysUserMapper;
 
 	@Override
-	public RespMsg login(HttpServletRequest req) {
+	public RespMsg<SysUser> login(HttpServletRequest req) {
 
 		String account = req.getParameter("account");
 		String password = req.getParameter("password");
-		if(StringUtils.isEmpty(account)){
+		if (StringUtils.isEmpty(account)) {
 			return fail("用户名为空");
 		}
-		if(StringUtils.isEmpty(password)){
+		if (StringUtils.isEmpty(password)) {
 			return fail("密码为空");
 		}
 		String reqIp = req.getRemoteAddr();
 		List<SysUser> userList = sysUserMapper.selectByAccount(account.trim());
 		SysUser user = null;
+		Date lastLoginTime = null;//保存上次登录时间
 		if (CollectionUtils.isEmpty(userList)) {
 			return fail("用户不存在");
 		} else {
 			user = userList.get(0);
+			lastLoginTime = user.getLastLoginTime();
 		}
 		String encryptPassword = EncryptUtil.md5(user.getAccount() + user.getSalt() + password.trim());
 		if (!encryptPassword.equals(user.getPassword())) {
 			return fail("密码错误");
 		}
 		String token = UUID.randomUUID().toString().replaceAll("\\-", "");
+
+		user.setToken(token);
+		user.setLoginIp(reqIp);
+		user.setLastLoginTime(new Date());
+		sysUserMapper.updateSelective(user);
 		
-		SysUser loginUser = new SysUser();
-		loginUser.setId(user.getId());
-		loginUser.setToken(token);
-		loginUser.setLoginIp(reqIp);
-		loginUser.setLastLoginTime(new Date());
-		sysUserMapper.updateSelective(loginUser);
-		
+		user.setLastLoginTime(lastLoginTime);
 		HttpSession session = req.getSession();
-		session.setAttribute(session.getId(), loginUser);
-		return success("登录成功", loginUser);
+		session.setAttribute(session.getId(), user);
+		return success("登录成功", user);
 	}
 
 }

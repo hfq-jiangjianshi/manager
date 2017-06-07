@@ -2,6 +2,8 @@ package com.hfq.house.manager.entity.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -17,6 +19,7 @@ public class SysUser {
 	private String token; //登录token
 	private Integer status; //账号状态  1 可用，2 不可用
 	private String loginIp; //登录IP
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date lastLoginTime; //最后登录时间
 	private Date createTime; //创建时间
 	private Date updateTime; //修改时间

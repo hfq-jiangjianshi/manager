@@ -1,12 +1,33 @@
 //退出 
 function logout() {
 	$.ajax({
-		url : basePath + "/sysbase/logout.c",
+		url : basePath + "/logout",
 		type : 'post',
 		success : function(res) {
-			document.location.href = basePath + "/sysbase/login.c";
+			if(res.status ==0){
+				document.location.href = basePath + "/index";
+			}
+		},
+		error : function() {
+			alert("请求失败")
 		}
 	});
+}
+
+function getLoginUser() {
+	$.ajax({
+		url : basePath + "/getLoginUser",
+		type : 'post',
+		success : function(res) {
+			console.log(res);
+			$("#com_label").text(res.data.realName).css("color", "#15428B");
+			$("#login_time").text(res.data.lastLoginTime).css("color", "#15428B");
+		},
+		error : function() {
+			alert("请求失败")
+		}
+	});
+
 }
 
 function menuClick() {
@@ -19,10 +40,9 @@ function menuClick() {
 			}
 		}
 	});
-
 }
 
 $(function() {
-
+	getLoginUser();
 	menuClick();
 });
