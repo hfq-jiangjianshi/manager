@@ -10,7 +10,6 @@ var opt = {
 			$("#msg_top").text("密码不能为空").css("color", "red");
 			return;
 		}
-
 		$.ajax({
 			url : '/login',
 			type : 'POST',
@@ -31,5 +30,20 @@ var opt = {
 				alert("系统异常，请联系管理员")
 			}
 		})
+	},
+
+	listenKeyUp : function() {
+		// 回车事件绑定
+		$('#password').bind('keyup', function(event) {
+			if (event.keyCode == "13") {
+				// 回车执行查询
+				opt.login();
+			}
+		});
 	}
 }
+
+//document加载完成执行
+$(function(){
+	opt.listenKeyUp();
+})
