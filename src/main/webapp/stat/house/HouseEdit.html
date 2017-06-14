@@ -141,8 +141,12 @@ img {
 			</tr>
 			<tr>
 				<td>房源标签:</td>
-				<td colspan="7">
-				<input name="houseTag"  value="${vo.detail.houseTag!''}" style="width: 400px;"/>
+				<td colspan="5">
+				<input name="houseTag"  value="${vo.detail.houseTag!''}" style="width: 540px;"/>
+				</td>
+				<td>经纪人电话:</td>
+				<td>
+				<input name="agencyPhone"  value="${vo.base.agencyPhone!''}" readonly style="width: 100px;"/>
 				</td>
 			</tr>
 			<tr>
@@ -182,7 +186,7 @@ img {
 					<span>首图</span>
 				</div>
 				<div>
-					<img alt="房源图片" src="${img.picRootPath !''}">
+					<img alt="${img.picRootPath !'无链接'}" src="${img.picRootPath !''}">
 				</div>
 				<div>
 					<#if img.isDelete==1> 

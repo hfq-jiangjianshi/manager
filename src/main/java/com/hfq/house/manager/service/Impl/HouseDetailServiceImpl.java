@@ -210,9 +210,9 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 
 		RoomDetailEditVo editVo = new RoomDetailEditVo();
 		HouseDetail detail = houseDetailMapper.selectHouseDetailBySellId(houseSellId);
-
-		RoomBase base = roomBaseMapper.selectRoomBaseByRoomId(roomId);
-		String houseTag = base.getRoomTag();
+		HouseBase hbase= houseBaseMapper.selectHouseBaseBySellId(houseSellId);
+		RoomBase rbase = roomBaseMapper.selectRoomBaseByRoomId(roomId);
+		String houseTag = rbase.getRoomTag();
 		if (!StringUtils.isEmpty(houseTag)) {
 			String tags[] = houseTag.split(",");
 			StringBuffer sb = new StringBuffer();
@@ -223,12 +223,12 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 				}
 			}
 			if (sb.length() > 0) {
-				base.setRoomTag(sb.substring(0, sb.length() - 1));
+				rbase.setRoomTag(sb.substring(0, sb.length() - 1));
 			}
 		}
-		base.setRentPriceMonth(base.getRentPriceMonth() / HUNDRED);// 月租金
-		base.setDepositFee(base.getDepositFee() / HUNDRED);// 押金
-		base.setServiceFee(base.getServiceFee() / HUNDRED);// 服务费或中介费
+		rbase.setRentPriceMonth(rbase.getRentPriceMonth() / HUNDRED);// 月租金
+		rbase.setDepositFee(rbase.getDepositFee() / HUNDRED);// 押金
+		rbase.setServiceFee(rbase.getServiceFee() / HUNDRED);// 服务费或中介费
 		List<HousePics> imgsList = housePicsMapper.selectPicsBySellIdAndRoomId(houseSellId, roomId);
 		for (HousePics pic : imgsList) {
 			if (StringUtils.isEmpty(pic.getPicRootPath())) {
@@ -249,7 +249,8 @@ public class HouseDetailServiceImpl implements HouseDetailService {
 			}
 		}
 		editVo.setDetail(detail);
-		editVo.setBase(base);
+		editVo.setRbase(rbase);
+		editVo.setHbase(hbase);
 		editVo.setImgsList(imgsList);
 		editVo.setSettingList(allSettingList);
 		return editVo;
