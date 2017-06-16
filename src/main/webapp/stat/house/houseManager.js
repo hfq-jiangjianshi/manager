@@ -157,7 +157,17 @@ $(document).ready(function() {
 		toolbar : '#toolbar',
 		onDblClickRow : function(rowIndex, rowData) {
 			opt.edit(rowIndex, rowData);
-		}
+		},
+		onBeforeRefresh: function (pageNumber, pageSize) {
+            var CurrentPage = parseInt($('input.pagination-num').attr('value'));//刷新跳转到输入页
+            if ((CurrentPage * pageSize - pageSize) <= totalRecord) {
+                var firstnum = CurrentPage * pageSize - pageSize + 1;
+                var lastnum = CurrentPage * pageSize;
+                $('#pp').pagination({
+                    pageNumber: CurrentPage,
+                }); 
+            } 
+        }
 	});
 
 	loadData();
