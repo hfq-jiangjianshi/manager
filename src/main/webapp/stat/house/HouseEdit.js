@@ -150,8 +150,8 @@ function loadData() {
 }
 
 $(function() {
-//	opt.bindClickOnCheckBox();
-//	opt.selectFirstImg();
-//	opt.deleteImg();
+	opt.bindClickOnCheckBox();
+	opt.selectFirstImg();
+	opt.deleteImg();
 	loadData();
 })
